@@ -52,8 +52,8 @@ class MainActivity : ComponentActivity() {
             KalugiRecetasAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
-                    val appViewModel by viewModels<BasicViewModel>() // para inicializar el ViewModel
-                    recetaList = appViewModel.recetaList.value ?: arrayListOf() // para inicializar la lista de Singers
+                    val appViewModel by viewModels<BasicViewModel>()
+                    recetaList = appViewModel.recetaList.value ?: arrayListOf()
                     PantallaInicio(
                         modifier = Modifier.padding(innerPadding),
                         appViewModel
@@ -87,7 +87,7 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
         )
     )
 
-    // Update the ViewModel's recetaList with the initialized data
+
     LaunchedEffect(Unit) {
         inViewModel.initializeRecetaList(initialRecetaList)
     }
@@ -146,9 +146,9 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
                         label = { Text(text = menuItems.title) },
                         onClick = {
                             selectedItemIndex = index
-                            // Código de navegación
+
                             navController.navigate(menuItems.route)
-                            //Abrir o Cerrar el Drawer (Menu lateral App)
+
                             scope.launch {
                                 drawerState.apply {
                                     if (isClosed) open() else close()
@@ -175,7 +175,7 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
             floatingActionButton = {
                 ExtendedFloatingActionButton(
 
-                    onClick = { navController.navigate("addReceta")/* TODO  navegar a la pantalla PantallaAddSinger */ },
+                    onClick = { navController.navigate("addReceta")},
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_add_24),
@@ -185,15 +185,7 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
             }
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
-                //Las llamadas a las funciones comentadas son para probar las pantallas sin ViewModel
-                //PantallaCantanteGrid(singerList, modifier.padding(start = 10.dp, top = 70.dp)) } /* TODO cuando incluyamos la fucnión de navegación, sustituiremos la llamada a la función que muestra la pantalla de inicio */
-                //PantallaBuscar(singerList, modifier) }                                           /* TODO por la llamada a la funcion de navegación */
-                //PantallaAddSinger(singerList, modifier)}
-                //Cantante(singerList, modifier) }
 
-                //PantallaCantante(singerList, modifier, inViewModel = inViewModel) } /* TODO esta función, tal como está, no funciona. Necesita el ViewModel */
-
-                /* TODO con ViewModel sutituir la variable por la variable de ViewModel*/
                 Navegacion(navController, singerList, modifier, inViewModel)
 
             }

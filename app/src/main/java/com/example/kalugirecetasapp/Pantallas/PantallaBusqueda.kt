@@ -27,12 +27,7 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
 @Composable
-fun PantallaBusqueda(
-    onSearch: ArrayList<infoReceta>,
-    modifier: Modifier,
-    inViewModel: BasicViewModel,
-    navController: NavHostController
-) {
+fun PantallaBusqueda(onSearch: ArrayList<infoReceta>, modifier: Modifier, inViewModel: BasicViewModel, navController: NavHostController) {
     val searchQuery = remember { mutableStateOf("") }
     val selectedFilters = remember { mutableStateOf(mutableSetOf<String>()) }
 
@@ -50,7 +45,7 @@ fun PantallaBusqueda(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        // Pole wyszukiwania z ikoną lupy
+
         OutlinedTextField(
             value = searchQuery.value,
             onValueChange = { searchQuery.value = it },
