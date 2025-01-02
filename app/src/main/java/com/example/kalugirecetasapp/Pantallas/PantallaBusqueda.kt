@@ -66,7 +66,7 @@ fun PantallaBusqueda(
                 .padding(bottom = 16.dp)
         )
 
-        // Sekcja filtrowania
+
         Text(
             text = "Filtros de búsqueda:",
             style = MaterialTheme.typography.headlineLarge,
@@ -95,7 +95,7 @@ fun PantallaBusqueda(
             }
         }
 
-        // Przycisk wyszukiwania
+
         Spacer(modifier = Modifier.weight(1f))
         Button(
             onClick = {
