@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.kalugirecetasapp.PantallaInicio
 import com.example.kalugirecetasapp.Pantallas.PantallaBusqueda
 import com.example.kalugirecetasapp.Pantallas.PantallaConfiguracion
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
@@ -14,11 +15,17 @@ import com.example.kalugirecetasapp.dataClass.infoReceta
 
 
 @Composable
-fun Navegacion(navController: NavHostController, recetalrist:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
-    val selectedReceta by inViewModel.selectedReceta.observeAsState(recetalrist[0])
+fun Navegacion(navController: NavHostController, recetaList:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
+    val selectedReceta by inViewModel.selectedReceta.observeAsState(recetaList[0])
 
     NavHost(navController = navController, startDestination = "pantalla_inicio") {
-        composable("busqueda") { PantallaBusqueda(recetalrist, modifier, inViewModel,navController) }
+        composable("busqueda") { PantallaBusqueda(recetaList, modifier, inViewModel,navController) }
+        composable("pantalla_inicio") { PantallaInicio( recetaList, modifier, inViewModel,navController) }
+        composable("pantalla_configuracion") { PantallaConfiguracion(recetaList, modifier, inViewModel,navController) }
+
+
+
 
     }
+
 }

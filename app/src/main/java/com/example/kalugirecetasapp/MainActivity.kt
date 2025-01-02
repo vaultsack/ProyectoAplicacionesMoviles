@@ -1,5 +1,6 @@
 package com.example.kalugirecetasapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,7 +32,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
                     val appViewModel by viewModels<BasicViewModel>()
-                    recetaList = appViewModel.recetaList.value ?: arrayListOf()
+                    InitRecetaList(appViewModel)
                     PantallaInicio(
                         modifier = Modifier.padding(innerPadding),
                         appViewModel
@@ -63,7 +63,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-var recetaList = ArrayList<infoReceta>()
+var recetaList = arrayListOf<infoReceta>()
+
 
 @Composable
 fun InitRecetaList(inViewModel: BasicViewModel) {
@@ -86,18 +87,14 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
             favorito = false
         )
     )
-
-
-    LaunchedEffect(Unit) {
-        inViewModel.initializeRecetaList(initialRecetaList)
-    }
+    inViewModel.initializeRecetaList(initialRecetaList)
 }
-
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
 
     val navController = rememberNavController()
-    val singerList by inViewModel.recetaList.observeAsState(arrayListOf())
+    val recetaList by inViewModel.recetaList.observeAsState(arrayListOf())
 
     val menuItems = arrayListOf(
         drawerMenuItem(
@@ -124,6 +121,11 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
             icon = R.drawable.baseline_add_24,
             title = "Añadir",
             route = "pantallaAnadir"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_settings_24,
+            title = "Configuración",
+            route = "pantallaConfiguracion"
         )
     )
 
@@ -146,9 +148,7 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
                         label = { Text(text = menuItems.title) },
                         onClick = {
                             selectedItemIndex = index
-
                             navController.navigate(menuItems.route)
-
                             scope.launch {
                                 drawerState.apply {
                                     if (isClosed) open() else close()
@@ -186,7 +186,7 @@ fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
         ) { innerPadding ->
             Box(modifier = Modifier.padding(innerPadding)) {
 
-                Navegacion(navController, singerList, modifier, inViewModel)
+                Navegacion(navController, recetaList, modifier, inViewModel)
 
             }
 

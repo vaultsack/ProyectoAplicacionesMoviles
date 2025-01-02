@@ -103,3 +103,4 @@ fun PantallaBusqueda(onSearch: ArrayList<infoReceta>, modifier: Modifier, inView
         }
     }
 }
+

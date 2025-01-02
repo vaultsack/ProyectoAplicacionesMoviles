@@ -1,6 +1,5 @@
 package com.example.kalugirecetasapp.ViewModel
 
-import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ class BasicViewModel:ViewModel() {
 
     private val _IDreceta = MutableLiveData<String>("")
     val IDreceta: LiveData<String> = _IDreceta
+
 
     private val _nombreReceta = MutableLiveData<String>("")
     val nombreReceta: LiveData<String> = _nombreReceta
