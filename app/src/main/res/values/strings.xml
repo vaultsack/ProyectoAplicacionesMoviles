@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KalugiRecetasApp</string>
+    <string name="DumplingsIngediente">1.Flour, 2.Milk, 3.Sugar</string>
+    <string name="DumplingsInstruccion"> Add milk to flour.</string>
+
+
+</resources>
