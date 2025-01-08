@@ -51,10 +51,5 @@ fun BottomNavigationBar(navController: NavController) {
         )
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun BottomNavigationBarPreview() {
-    BottomNavigationBar(navController = NavController(LocalContext.current))
-}
 
 
