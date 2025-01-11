@@ -8,24 +8,26 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.kalugirecetasapp.PantallaInicio
+import com.example.kalugirecetasapp.Pantallas.MostrarInfoCard
 import com.example.kalugirecetasapp.Pantallas.PantallaAddReceta
 import com.example.kalugirecetasapp.Pantallas.PantallaBusqueda
 import com.example.kalugirecetasapp.Pantallas.PantallaFavoritos
+import com.example.kalugirecetasapp.Pantallas.PantallaReceta
+import com.example.kalugirecetasapp.Pantallas.PantallaRecetaGrid
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
 
 @Composable
-fun Navegacion(navController: NavHostController, recetaList:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
-    val selectedReceta by inViewModel.selectedReceta.observeAsState(recetaList[0])
+fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
+    val selectedReceta by inViewModel.selectedReceta.observeAsState(recetasList[0])
 
-    NavHost(navController = navController, startDestination = "pantalla_inicio") {
-        composable("busqueda") { PantallaBusqueda(recetaList, modifier, inViewModel,navController) }
-        composable("pantalla_inicio") { PantallaInicio( modifier, inViewModel) }
-//        composable("pantalla_configuracion") { PantallaConfiguracion(recetaList, modifier, inViewModel,navController) }
-        composable("pantalla_anadir") { PantallaAddReceta(recetaList, modifier, inViewModel,navController) }
-
-        composable("pantalla_favoritos") { PantallaFavoritos (selectedReceta, modifier, inViewModel) }
+    NavHost(navController = navController, startDestination = "receta") {
+        composable("busqueda") { PantallaBusqueda(recetasList, modifier, inViewModel,navController) }
+        composable("receta") { PantallaReceta(recetasList, modifier, inViewModel,navController) }
+        composable("recetaGrid") { PantallaRecetaGrid(recetasList, modifier, inViewModel,navController) }
+        composable("pantalla_anadir") { PantallaAddReceta(recetasList, modifier, inViewModel,navController) }
+        composable("cardInfo") { MostrarInfoCard(selectedReceta, inViewModel)}
 
 
 

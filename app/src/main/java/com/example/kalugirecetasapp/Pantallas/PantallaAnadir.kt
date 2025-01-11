@@ -55,31 +55,32 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
 
     }
     val imagenID by inViewModel.imagenID.observeAsState("")
-    val nombreReceta:String by inViewModel.nombreReceta.observeAsState("")
-    val ingredientes:String by inViewModel.ingredientes.observeAsState("")
-    val instrucciones:String by inViewModel.instrucciones.observeAsState("")
-    val favorito:Boolean by inViewModel.recetaFavorite.observeAsState(false)
+    val nombreReceta: String by inViewModel.nombreReceta.observeAsState("")
+    val ingredientes: String by inViewModel.ingredientes.observeAsState("")
+    val instrucciones: String by inViewModel.instrucciones.observeAsState("")
+    val favorito: Boolean by inViewModel.recetaFavorite.observeAsState(false)
 
-    val uriAddReceta = Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
+    val uriAddReceta =
+        Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
 
-    var imageUri by remember{ mutableStateOf<Uri?>(uriAddReceta) }
+    var imageUri by remember { mutableStateOf<Uri?>(uriAddReceta) }
 
     val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()){
-            uri: Uri? ->
+        contract = ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
         imageUri = uri
         inViewModel.updateImagenID(imageUri.toString())
     }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(16.dp)
-    ){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 70.dp)
-            ,
+                .padding(top = 70.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -90,9 +91,8 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
                     .border(0.5.dp, Color.Blue, CircleShape)
                     .padding(1.dp)
                     .clip(RectangleShape)
-                    .clickable { launcher.launch("image/*") }
-                ,
-                contentScale= ContentScale.Crop,
+                    .clickable { launcher.launch("image/*") },
+                contentScale = ContentScale.Crop,
                 painter = rememberAsyncImagePainter(
                     ImageRequest.Builder(LocalContext.current)
                         .data(imageUri)
@@ -102,7 +102,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             )
             Spacer(modifier = Modifier.size(10.dp))
             OutlinedTextField(value = nombreReceta,
-                onValueChange ={inViewModel.updateNombreReceta(it)} ,
+                onValueChange = { inViewModel.updateNombreReceta(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
@@ -110,7 +110,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             )
 
             OutlinedTextField(value = ingredientes,
-                onValueChange ={inViewModel.updateIngredientes(it)} ,
+                onValueChange = { inViewModel.updateIngredientes(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
@@ -118,56 +118,57 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             )
 
             OutlinedTextField(value = instrucciones,
-                onValueChange ={inViewModel.updateInstrucciones(it)} ,
+                onValueChange = { inViewModel.updateInstrucciones(it) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 8.dp),
                 label = { Text(text = "Instrucciones") }
             )
 
-            IconToggleButton(checked = favorito==true,
-                onCheckedChange = {inViewModel.updaterecetaFavorite(it)} ) {
-                Icon(painter = painterResource(id =
-                if (favorito==true) R.drawable.baseline_favorite_24
-                else R.drawable.baseline_favorite_border_24
-                ),
+            IconToggleButton(checked = favorito == true,
+                onCheckedChange = { inViewModel.updaterecetaFavorite(it) }) {
+                Icon(
+                    painter = painterResource(
+                        id =
+                        if (favorito == true) R.drawable.baseline_favorite_24
+                        else R.drawable.baseline_favorite_border_24
+                    ),
                     contentDescription =
-                    if (favorito==true) "Favorito seleccionado"
+                    if (favorito == true) "Favorito seleccionado"
                     else "Favorito no seleccionado",
                     tint = Color.Blue
                 )
             }
             val newList by inViewModel.recetaList.observeAsState(recetaList)
-            Button(onClick = {
+            Button(
+                onClick = {
+                    val nuevaReceta = infoReceta(
+                        IDreceta = imageUri ?: Uri.EMPTY, // Używamy aktualnego URI lub pustego URI
+                        nombreReceta = nombreReceta,
+                        ingredientes = ingredientes,
+                        instrucciones = instrucciones,
+                        categoria = "Cena",
+                        tiempoPreparacion = "45 minutos",
+                        dificultad = "Media",
+                        imagenID = imagenID, // Pobieramy wartość `imagenID` z ViewModel
+                        recetaFavorite = favorito // Ustawiamy wartość ulubionej recepty
+                    )
+                    inViewModel.updateRecetaList(ArrayList(newList), nuevaReceta)
 
-                var nuevaReceta = infoReceta(
-                    IDreceta = imageUri ?: Uri.EMPTY,
-                    nombreReceta = nombreReceta,
-                    ingredientes = ingredientes,
-                    instrucciones = instrucciones,
-                    categoria = "Cena",
-                    tiempoPreparacion = "45 minutos",
-                    dificultad = "Media",
-                    imagenID = "sushimaki",
-                    recetaFavorite = favorito
-                )
-
-
-
-                navController.navigate("cancion")
-
-            },
+                    navController.navigate("receta")
+                },
                 modifier = Modifier
                     .fillMaxWidth(),
-
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
-                enabled= nombreReceta.isNotBlank() &&  ingredientes.isNotBlank()
+                enabled = nombreReceta.isNotBlank() && ingredientes.isNotBlank()
             ) {
-                Text(text = "Añadir nueva Receta",
+                Text(
+                    text = "Añadir nueva Receta",
                     color = Color.White
                 )
             }
         }
     }
 }
+
 
