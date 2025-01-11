@@ -29,17 +29,20 @@ class BasicViewModel:ViewModel() {
     private val _instrucciones = MutableLiveData<String>("")
     val instrucciones: LiveData<String> = _instrucciones
 
-    private val _imagen = MutableLiveData<String>("")
-    val imagen: LiveData<String> = _imagen
+    private val _imagenID = MutableLiveData<String>("")
+    val imagenID: LiveData<String> = _imagenID
 
-    private val _favorito = MutableLiveData<Boolean>(false)
-    val favorito: LiveData<Boolean> = _favorito
+    private val _recetaFavorite = MutableLiveData<Boolean>(false)
+    val recetaFavorite: LiveData<Boolean> = _recetaFavorite
 
     private val _recetaList = MutableLiveData<ArrayList<infoReceta>>(arrayListOf())
     val recetaList: LiveData<ArrayList<infoReceta>> = _recetaList
 
     private val _selectedReceta = MutableLiveData<infoReceta>()
     val selectedReceta: LiveData<infoReceta> = _selectedReceta
+
+    private val _isGrid = MutableLiveData<Boolean>(true)
+    val isGrid: LiveData<Boolean> = _isGrid
 
     fun updateIDreceta(newIDreceta: String) {
         _IDreceta.value = newIDreceta
@@ -69,12 +72,12 @@ class BasicViewModel:ViewModel() {
         _instrucciones.value = newInstrucciones
     }
 
-    fun updateImagen(newImagen: String) {
-        _imagen.value = newImagen
+    fun updateImagenID(newImagenID: String) {
+        _imagenID.value = newImagenID
     }
 
-    fun updateFavorito(newFavorito: Boolean) {
-        _favorito.value = newFavorito
+    fun updaterecetaFavorite(newrecetaFavorite: Boolean) {
+        _recetaFavorite.value = newrecetaFavorite
     }
 
     fun updateRecetaList(newRecetaList: ArrayList<infoReceta>, newReceta: infoReceta) {
@@ -82,7 +85,7 @@ class BasicViewModel:ViewModel() {
         _recetaList.value = newRecetaList
     }
 
-    fun initializeRecetaList(newRecetaList: ArrayList<infoReceta>) {
+    fun initializedRecetaList(newRecetaList: ArrayList<infoReceta>) {
         _recetaList.value = newRecetaList
     }
 
@@ -90,8 +93,13 @@ class BasicViewModel:ViewModel() {
         _selectedReceta.value = newSelectedReceta
     }
 
-    fun updateRecetaList(newRecetaList: ArrayList<infoReceta>) {
-        _recetaList.value = newRecetaList
+    fun getGrid(): Boolean? {
+        return isGrid.value
+    }
+    fun setGrid(newGrid: Boolean) {
+        _isGrid.value = newGrid
+
+
 
 
 

@@ -38,14 +38,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.kalugirecetasapp.R
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
-import com.example.kalugirecetasapp.recetaList
 
 @Composable
 fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inViewModel: BasicViewModel, navController: NavHostController) {
@@ -54,14 +52,14 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
         inViewModel.updateNombreReceta("")
         inViewModel.updateIngredientes("")
         inViewModel.updateInstrucciones("")
-        inViewModel.updateFavorito(false)
+        inViewModel.updaterecetaFavorite(false)
 
     }
-    val imagenID by inViewModel.imagen.observeAsState("")
+    val imagenID by inViewModel.imagenID.observeAsState("")
     val nombreReceta:String by inViewModel.nombreReceta.observeAsState("")
     val ingredientes:String by inViewModel.ingredientes.observeAsState("")
     val instrucciones:String by inViewModel.instrucciones.observeAsState("")
-    val favorito:Boolean by inViewModel.favorito.observeAsState(false)
+    val favorito:Boolean by inViewModel.recetaFavorite.observeAsState(false)
 
     val uriAddReceta = Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
 
@@ -71,7 +69,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
         contract = ActivityResultContracts.GetContent()){
             uri: Uri? ->
         imageUri = uri
-        inViewModel.updateImagen(imageUri.toString())
+        inViewModel.updateImagenID(imageUri.toString())
     }
 
     Box(modifier = Modifier
@@ -81,7 +79,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top=70.dp)
+                .padding(top = 70.dp)
             ,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -129,7 +127,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             )
 
             IconToggleButton(checked = favorito==true,
-                onCheckedChange = {inViewModel.updateFavorito(it)} ) {
+                onCheckedChange = {inViewModel.updaterecetaFavorite(it)} ) {
                 Icon(painter = painterResource(id =
                 if (favorito==true) R.drawable.baseline_favorite_24
                 else R.drawable.baseline_favorite_border_24
@@ -143,7 +141,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             val newList by inViewModel.recetaList.observeAsState(recetaList)
             Button(onClick = {
 
-                var nuevaReceta = infoReceta( IDreceta = "1", nombreReceta = nombreReceta, categoria = "Cena", tiempoPreparacion = "45 minutos", dificultad = "Media", ingredientes = ingredientes, instrucciones = instrucciones, imagen = imagenID, favorito = favorito)
+                var nuevaReceta = infoReceta(IDreceta = "1", nombreReceta, ingredientes, instrucciones, "Cena", "45 minutos", "Media", "sushimaki", favorito )
                 inViewModel.updateRecetaList(ArrayList(newList), nuevaReceta )
 
 
@@ -163,3 +161,4 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
         }
     }
 }
+

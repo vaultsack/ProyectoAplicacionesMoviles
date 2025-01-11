@@ -11,17 +11,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
+import com.example.kalugirecetasapp.dataClass.infoReceta
 
 @Composable
 fun PantallaConfiguracion(
-    recetaViewModel: BasicViewModel = viewModel(),
-    onResetRecetas: () -> Unit,
-    onToggleDarkMode: (Boolean) -> Unit,
-    onChangeLanguage: (String) -> Unit
+    recetaViewModel: ArrayList<infoReceta> = viewModel(),
+    onResetRecetas: Modifier,
+    onToggleDarkMode: BasicViewModel,
+    onChangeLanguage: NavHostController
 ) {
     var isDarkMode by remember { mutableStateOf(false) }
     var selectedLanguage by remember { mutableStateOf("Español") }
@@ -43,7 +44,7 @@ fun PantallaConfiguracion(
         Button(
             onClick = {
                 onResetRecetas()
-                recetaViewModel.initializeRecetaList(arrayListOf())
+                recetaViewModel.initializedRecetaList(arrayListOf())
             },
             modifier = Modifier.fillMaxWidth()
         ) {

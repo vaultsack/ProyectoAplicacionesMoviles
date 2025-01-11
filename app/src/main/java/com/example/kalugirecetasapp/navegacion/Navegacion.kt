@@ -8,8 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.kalugirecetasapp.PantallaInicio
+import com.example.kalugirecetasapp.Pantallas.PantallaAddReceta
 import com.example.kalugirecetasapp.Pantallas.PantallaBusqueda
 import com.example.kalugirecetasapp.Pantallas.PantallaConfiguracion
+import com.example.kalugirecetasapp.Pantallas.PantallaFavoritos
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
@@ -20,8 +22,11 @@ fun Navegacion(navController: NavHostController, recetaList:ArrayList<infoReceta
 
     NavHost(navController = navController, startDestination = "pantalla_inicio") {
         composable("busqueda") { PantallaBusqueda(recetaList, modifier, inViewModel,navController) }
-        composable("pantalla_inicio") { PantallaInicio( recetaList, modifier, inViewModel,navController) }
+        composable("pantalla_inicio") { PantallaInicio( recetaList, modifier) }
         composable("pantalla_configuracion") { PantallaConfiguracion(recetaList, modifier, inViewModel,navController) }
+        composable("pantalla_anadir") { PantallaAddReceta(recetaList, modifier, inViewModel,navController) }
+
+        composable("pantalla_favoritos") { PantallaFavoritos (selectedReceta,inViewModel) }
 
 
 

@@ -1,6 +1,7 @@
 package com.example.kalugirecetasapp
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -68,26 +68,99 @@ var recetaList = arrayListOf<infoReceta>()
 
 @Composable
 fun InitRecetaList(inViewModel: BasicViewModel) {
-    val uriDumplings =
-        "https://az.przepisy.pl/www-przepisy-pl/www.przepisy.pl/przepisy3ii/img/variants/800x0/chinskie-pierozki-dim-sum-2.jpg"
+    //imagenes
+    val uriSpagettiCarboanra = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/spagetticarboanra")
+    val uriSushiMaki = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/sushimaki")
+    val uriTacosAlPastor = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/tacospastor")
+    val uriPaellaDeMariscosos = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/paellademarisco")
+    val uriRatatouilles = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/rattatouille")
+    val uriPadThai = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/padthai")
+    val uriBroscht = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/borscht")
+    val uriCerviche = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/cerviche")
+    val uriFalafel = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/falafel")
+    val uriBaklava = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/baklava")
+    val uriButterChicken = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/butterchicken")
+    val uriPoutine = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/poutine")
+    val uriDimSum = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/dimsum")
+    val uriFeijoada = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/feijoada")
+    val uriKimchiJjigae = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/kimchijjigae")
+    val uriShepherdsPie = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/shepherd_s_pie")
+    val uriChurros = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/churros")
+    val uriRamen =      Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/ramen")
+    val uriGnocchi = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/gnocchi")
+    val uriTabule = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/tabule")
 
-    val dumplingsIngredientes = stringResource(R.string.DumplingsIngediente)
-    val dumplingsInstrucciones = stringResource(R.string.DumplingsInstruccion)
+    //ingredientes desde Strings.xml
+    val uriIngredientesSpagettiCarboanra = stringResource(R.string.ingredientesSpagettiCarboanra)
+    val uriIngredientesSushiMaki = stringResource(R.string.ingredientesSushiMaki)
+    val uriIngredientesTacosAlPastor = stringResource(R.string.ingredientesTacosAlPastor)
+    val uriIngredientesPaellaDeMariscosos = stringResource(R.string.ingredientesPaellaDeMariscosos)
+    val uriIngredientesRatatouilles = stringResource(R.string.ingredientesRatatouilles)
+    val uriIngredientesPadThai = stringResource(R.string.ingredientesPadThai)
+    val uriIngredientesBroscht = stringResource(R.string.ingredientesBroscht)
+    val uriIngredientesCerviche = stringResource(R.string.ingredientesCerviche)
+    val uriIngredientesFalafel = stringResource(R.string.ingredientesFalafel)
+    val uriIngredientesBaklava = stringResource(R.string.ingredientesBaklava)
+    val uriIngredientesButterChicken = stringResource(R.string.ingredientesButterChicken)
+    val uriIngredientesPoutine = stringResource(R.string.ingredientesPoutine)
+    val uriIngredientesDimSum = stringResource(R.string.ingredientesDimSum)
+    val uriIngredientesFeijoada = stringResource(R.string.ingredientesFeijoada)
+    val uriIngredientesKimchiJjigae = stringResource(R.string.ingredientesKimchiJjigae)
+    val uriIngredientesShepherdsPie = stringResource(R.string.ingredientesShepherdsPie)
+    val uriIngredientesChurros = stringResource(R.string.ingredientesChurros)
+    val uriIngredientesRamen = stringResource(R.string.ingredientesRamen)
+    val uriIngredientesGnocchi = stringResource(R.string.ingredientesGnocchi)
+    val uriIngredientesTabule = stringResource(R.string.ingredientesTabule)
 
-    val initialRecetaList = arrayListOf(
-        infoReceta(
-            IDreceta = "1",
-            nombreReceta = "Dumplings",
-            categoria = "Cena",
-            tiempoPreparacion = "45 minutos",
-            dificultad = "Media",
-            ingredientes = dumplingsIngredientes,
-            instrucciones = dumplingsInstrucciones,
-            imagen = uriDumplings,
-            favorito = false
-        )
+    //Instrucciones desde Strings.xml
+    val uriInstruccionesSpagettiCarboanra = stringResource(R.string.instruccionesSpagettiCarboanra)
+    val uriInstruccionesSushiMaki = stringResource(R.string.instruccionesSushiMaki)
+    val uriInstruccionesTacosAlPastor = stringResource(R.string.instruccionesTacosAlPastor)
+    val uriInstruccionesPaellaDeMariscosos = stringResource(R.string.instruccionesPaellaDeMariscosos)
+    val uriInstruccionesRatatouilles = stringResource(R.string.instruccionesRatatouilles)
+    val uriInstruccionesPadThai = stringResource(R.string.instruccionesPadThai)
+    val uriInstruccionesBroscht = stringResource(R.string.instruccionesBroscht)
+    val uriInstruccionesCerviche = stringResource(R.string.instruccionesCerviche)
+    val uriInstruccionesFalafel = stringResource(R.string.instruccionesFalafel)
+    val uriInstruccionesBaklava = stringResource(R.string.instruccionesBaklava)
+    val uriInstruccionesButterChicken = stringResource(R.string.instruccionesButterChicken)
+    val uriInstruccionesPoutine = stringResource(R.string.instruccionesPoutine)
+    val uriInstruccionesDimSum = stringResource(R.string.instruccionesDimSum)
+    val uriInstruccionesFeijoada = stringResource(R.string.instruccionesFeijoada)
+    val uriInstruccionesKimchiJjigae = stringResource(R.string.instruccionesKimchiJjigae)
+    val uriInstruccionesShepherdsPie = stringResource(R.string.instruccionesShepherdsPie)
+    val uriInstruccionesChurros = stringResource(R.string.instruccionesChurros)
+    val uriInstruccionesRamen = stringResource(R.string.instruccionesRamen)
+    val uriInstruccionesGnocchi = stringResource(R.string.instruccionesGnocchi)
+    val uriInstruccionesTabule = stringResource(R.string.instruccionesTabule)
+
+
+
+    //Lista inicial de Recetas
+    val initialRecetaList = arrayListOf<infoReceta>(
+        infoReceta( uriSpagettiCarboanra,"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, "Cena", "45 minutos", "Media", "spagetticarbonara", true),
+        infoReceta( uriSushiMaki,"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, "Cena", "45 minutos", "Media", "sushimaki", true),
+        infoReceta( uriTacosAlPastor,"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, "Cena", "45 minutos", "Media", "tacospastor", true),
+        infoReceta( uriPaellaDeMariscosos,"Paella de Mariscosos", uriIngredientesPaellaDeMariscosos, uriInstruccionesPaellaDeMariscosos, "Cena", "45 minutos", "Media", "paellademarisco", true),
+        infoReceta( uriRatatouilles,"Ratatouille", uriIngredientesRatatouilles, uriInstruccionesRatatouilles, "Cena", "45 minutos", "Media", "ratatouille", true),
+        infoReceta( uriPadThai,"Pad Thai", uriIngredientesPadThai, uriInstruccionesPadThai, "Cena", "45 minutos", "Media", "padthai", true),
+        infoReceta( uriBroscht,"Broscht", uriIngredientesBroscht, uriInstruccionesBroscht, "Cena", "45 minutos", "Media", "borscht", true),
+        infoReceta( uriCerviche,"Cerviche", uriIngredientesCerviche, uriInstruccionesCerviche, "Cena", "45 minutos", "Media", "cerviche", true),
+        infoReceta( uriFalafel,"Falafel", uriIngredientesFalafel, uriInstruccionesFalafel, "Cena", "45 minutos", "Media", "falafel", true),
+        infoReceta( uriBaklava,"Baklava", uriIngredientesBaklava, uriInstruccionesBaklava, "Cena", "45 minutos", "Media", "baklava", true),
+        infoReceta( uriButterChicken,"Butter Chicken", uriIngredientesButterChicken, uriInstruccionesButterChicken, "Cena", "45 minutos", "Media", "butterchicken", true),
+        infoReceta( uriPoutine,"Poutine", uriIngredientesPoutine, uriInstruccionesPoutine, "Cena", "45 minutos", "Media", "poutine", true),
+        infoReceta( uriDimSum,"Dim Sum", uriIngredientesDimSum, uriInstruccionesDimSum, "Cena", "45 minutos", "Media", "dimsum", true),
+        infoReceta( uriFeijoada,"Feijoada", uriIngredientesFeijoada, uriInstruccionesFeijoada, "Cena", "45 minutos", "Media", "feijoada", true),
+        infoReceta( uriKimchiJjigae,"Kimchi Jjigae", uriIngredientesKimchiJjigae, uriInstruccionesKimchiJjigae, "Cena", "45 minutos", "Media", "kimchijjigae", true),
+        infoReceta( uriShepherdsPie,"Shepherds Pie", uriIngredientesShepherdsPie, uriInstruccionesShepherdsPie, "Cena", "45 minutos", "Media", "shepherd_s_pie", true),
+        infoReceta( uriChurros,"Churros", uriIngredientesChurros, uriInstruccionesChurros, "Cena", "45 minutos", "Media", "churros", true),
+        infoReceta( uriRamen,"Ramen", uriIngredientesRamen, uriInstruccionesRamen, "Cena", "45 minutos", "Media", "ramen", true),
+        infoReceta( uriGnocchi,"Gnocchi", uriIngredientesGnocchi, uriInstruccionesGnocchi, "Cena", "45 minutos", "Media", "gnocchi", true),
+        infoReceta( uriTabule,"Tabule", uriIngredientesTabule, uriInstruccionesTabule, "Cena", "45 minutos", "Media", "tabule", true),
+
     )
-    inViewModel.initializeRecetaList(initialRecetaList)
+    inViewModel.initializedRecetaList(initialRecetaList)
 }
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable

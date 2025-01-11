@@ -29,25 +29,25 @@ fun BottomNavigationBar(navController: NavController) {
             icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
             label = { Text("Inicio") },
             selected = (selectedItem.value == 0),
-            onClick = { /*TODO navegar a pantalla inicio*/ }
+            onClick = { navController.navigate("pantallaInicio") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Default.Search, contentDescription = "Búsqueda") },
             label = { Text("Búsqueda") },
             selected = (selectedItem.value == 1),
-            onClick = { /*TODO navegar a pantalla busqueda*/ }
+            onClick = { navController.navigate("pantallaBusqueda") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },
             label = { Text("Favoritos") },
             selected = (selectedItem.value == 2),
-            onClick = { /*TODO navegar a pantalla favoritos*/ }
+            onClick = { navController.navigate("pantallaFavoritos") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Default.Person, contentDescription = "Perfil") },
             label = { Text("Perfil") },
             selected = (selectedItem.value == 3),
-            onClick = { /*TODO navegar a pantalla perfil*/ }
+            onClick = { navController.navigate("pantallaPerfil") }
         )
     }
 }
