@@ -38,114 +38,114 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PantallaPerfil(
-    viewModel: BasicViewModel,
-    userName: String,
-    onNameChange: (String) -> Unit,
-    onLogOut: () -> Unit,
-    onDeleteAccount: () -> Unit
-) {
-    val favoriteRecipes = viewModel.recetaList.value?.filter { it.favorito } ?: emptyList()
-    var editedName by remember { mutableStateOf(userName) }
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Perfil") }
-            )
-        }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState())
-        ) {
-            // User Name
-            Text(text = "Nombre:", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                value = editedName,
-                onValueChange = { editedName = it },
-                label = { Text("Nombre de Usuario") },
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Button(
-                onClick = {
-                    onNameChange(editedName)
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Actualizar Nombre")
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Favorite Recipes
-            Text(text = "Recetas Favoritas:", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(8.dp))
-            if (favoriteRecipes.isEmpty()) {
-                Text("No tienes recetas favoritas.", style = MaterialTheme.typography.headlineMedium)
-            } else {
-                favoriteRecipes.forEach { recipe ->
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 4.dp),
-                    ) {
-                        Row(
-                            modifier = Modifier.padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Image(
-                                painter = rememberAsyncImagePainter(model = recipe.imagen),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(64.dp)
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(Color.LightGray),
-                                contentScale = ContentScale.Crop
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Column {
-                                Text(text = recipe.nombreReceta, style = MaterialTheme.typography.headlineMedium)
-                                Text(
-                                    text = "Categoría: ${recipe.categoria}",
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    color = Color.Gray
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Log Out Button
-            Button(
-                onClick = { onLogOut() },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors()
-            ) {
-                Text("Cerrar Sesión", color = Color.White)
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Delete Account Button
-            Button(
-                onClick = { onDeleteAccount() },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors()
-            ) {
-                Text("Cerrar Cuenta", color = Color.White)
-            }
-        }
-    }
-}
+//
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun PantallaPerfil(
+//    viewModel: BasicViewModel,
+//    userName: String,
+//    onNameChange: (String) -> Unit,
+//    onLogOut: () -> Unit,
+//    onDeleteAccount: () -> Unit
+//) {
+//    val favoriteRecipes = viewModel.recetaList.value?.filter { it.favorito } ?: emptyList()
+//    var editedName by remember { mutableStateOf(userName) }
+//
+//    Scaffold(
+//        topBar = {
+//            TopAppBar(
+//                title = { Text("Perfil") }
+//            )
+//        }
+//    ) { paddingValues ->
+//        Column(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(paddingValues)
+//                .padding(16.dp)
+//                .verticalScroll(rememberScrollState())
+//        ) {
+//            // User Name
+//            Text(text = "Nombre:", style = MaterialTheme.typography.headlineMedium)
+//            Spacer(modifier = Modifier.height(8.dp))
+//            OutlinedTextField(
+//                value = editedName,
+//                onValueChange = { editedName = it },
+//                label = { Text("Nombre de Usuario") },
+//                modifier = Modifier.fillMaxWidth()
+//            )
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Button(
+//                onClick = {
+//                    onNameChange(editedName)
+//                },
+//                modifier = Modifier.fillMaxWidth()
+//            ) {
+//                Text("Actualizar Nombre")
+//            }
+//
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            // Favorite Recipes
+//            Text(text = "Recetas Favoritas:", style = MaterialTheme.typography.headlineMedium)
+//            Spacer(modifier = Modifier.height(8.dp))
+//            if (favoriteRecipes.isEmpty()) {
+//                Text("No tienes recetas favoritas.", style = MaterialTheme.typography.headlineMedium)
+//            } else {
+//                favoriteRecipes.forEach { recipe ->
+//                    Card(
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 4.dp),
+//                    ) {
+//                        Row(
+//                            modifier = Modifier.padding(8.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Image(
+//                                painter = rememberAsyncImagePainter(model = recipe.imagen),
+//                                contentDescription = null,
+//                                modifier = Modifier
+//                                    .size(64.dp)
+//                                    .clip(RoundedCornerShape(8.dp))
+//                                    .background(Color.LightGray),
+//                                contentScale = ContentScale.Crop
+//                            )
+//                            Spacer(modifier = Modifier.width(8.dp))
+//                            Column {
+//                                Text(text = recipe.nombreReceta, style = MaterialTheme.typography.headlineMedium)
+//                                Text(
+//                                    text = "Categoría: ${recipe.categoria}",
+//                                    style = MaterialTheme.typography.headlineMedium,
+//                                    color = Color.Gray
+//                                )
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
+//            Spacer(modifier = Modifier.height(16.dp))
+//
+//            // Log Out Button
+//            Button(
+//                onClick = { onLogOut() },
+//                modifier = Modifier.fillMaxWidth(),
+//                colors = ButtonDefaults.buttonColors()
+//            ) {
+//                Text("Cerrar Sesión", color = Color.White)
+//            }
+//
+//            Spacer(modifier = Modifier.height(8.dp))
+//
+//            // Delete Account Button
+//            Button(
+//                onClick = { onDeleteAccount() },
+//                modifier = Modifier.fillMaxWidth(),
+//                colors = ButtonDefaults.buttonColors()
+//            ) {
+//                Text("Cerrar Cuenta", color = Color.White)
+//            }
+//        }
+//    }
+//}

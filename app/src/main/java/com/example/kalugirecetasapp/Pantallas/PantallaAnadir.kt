@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
@@ -141,8 +140,18 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             val newList by inViewModel.recetaList.observeAsState(recetaList)
             Button(onClick = {
 
-                var nuevaReceta = infoReceta(IDreceta = "1", nombreReceta, ingredientes, instrucciones, "Cena", "45 minutos", "Media", "sushimaki", favorito )
-                inViewModel.updateRecetaList(ArrayList(newList), nuevaReceta )
+                var nuevaReceta = infoReceta(
+                    IDreceta = imageUri ?: Uri.EMPTY,
+                    nombreReceta = nombreReceta,
+                    ingredientes = ingredientes,
+                    instrucciones = instrucciones,
+                    categoria = "Cena",
+                    tiempoPreparacion = "45 minutos",
+                    dificultad = "Media",
+                    imagenID = "sushimaki",
+                    recetaFavorite = favorito
+                )
+
 
 
                 navController.navigate("cancion")

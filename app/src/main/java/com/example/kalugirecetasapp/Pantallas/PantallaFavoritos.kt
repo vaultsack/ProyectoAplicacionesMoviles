@@ -8,7 +8,7 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
 @Composable
-fun PantallaFavoritos(recetaList: ArrayList<infoReceta>, modifier: Modifier, inViewModel: BasicViewModel) {
+fun PantallaFavoritos(recetaList: infoReceta, modifier: Modifier, inViewModel: BasicViewModel) {
     val favorito by inViewModel.recetaFavorite.observeAsState(false)
 
 }

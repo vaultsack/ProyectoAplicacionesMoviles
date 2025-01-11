@@ -137,7 +137,7 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
 
 
     //Lista inicial de Recetas
-    val initialRecetaList = arrayListOf<infoReceta>(
+    var initialRecetaList = arrayListOf<infoReceta>(
         infoReceta( uriSpagettiCarboanra,"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, "Cena", "45 minutos", "Media", "spagetticarbonara", true),
         infoReceta( uriSushiMaki,"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, "Cena", "45 minutos", "Media", "sushimaki", true),
         infoReceta( uriTacosAlPastor,"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, "Cena", "45 minutos", "Media", "tacospastor", true),
@@ -164,7 +164,7 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
 }
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun PantallaInicio(modifier: Modifier = Modifier,inViewModel: BasicViewModel) {
+fun PantallaInicio(modifier: Modifier = Modifier, inViewModel: BasicViewModel) {
 
     val navController = rememberNavController()
     val recetaList by inViewModel.recetaList.observeAsState(arrayListOf())

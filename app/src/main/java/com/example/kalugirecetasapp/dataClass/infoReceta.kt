@@ -3,7 +3,7 @@ package com.example.kalugirecetasapp.dataClass
 import android.net.Uri
 
 class infoReceta(
-    var IDreceta: String,
+    var IDreceta: Uri,
     var nombreReceta: String,
     var ingredientes: String,
     var instrucciones: String,

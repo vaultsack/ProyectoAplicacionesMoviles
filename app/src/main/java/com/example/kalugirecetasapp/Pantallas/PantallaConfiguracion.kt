@@ -17,71 +17,71 @@ import androidx.navigation.NavHostController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
-@Composable
-fun PantallaConfiguracion(
-    recetaViewModel: ArrayList<infoReceta> = viewModel(),
-    onResetRecetas: Modifier,
-    onToggleDarkMode: BasicViewModel,
-    onChangeLanguage: NavHostController
-) {
-    var isDarkMode by remember { mutableStateOf(false) }
-    var selectedLanguage by remember { mutableStateOf("Español") }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Header
-        Text(
-            text = "Configuración",
-            style = MaterialTheme.typography.headlineLarge
-        )
-
-        // Reset Recipes Button
-        Button(
-            onClick = {
-                onResetRecetas()
-                recetaViewModel.initializedRecetaList(arrayListOf())
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Resetear Recetas")
-        }
-
-        // Dark Mode Toggle
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("Modo Oscuro")
-            Switch(
-                checked = isDarkMode,
-                onCheckedChange = {
-                    isDarkMode = it
-                    onToggleDarkMode(it)
-                }
-            )
-        }
-
-        // Language Selector
-        Column(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Idioma")
-            DropdownMenuExample(
-                selectedLanguage = selectedLanguage,
-                onLanguageSelected = {
-                    selectedLanguage = it
-                    onChangeLanguage(it)
-                }
-            )
-        }
-    }
-}
+//@Composable
+//fun PantallaConfiguracion(
+//    recetaViewModel: ArrayList<infoReceta> = viewModel(),
+//    onResetRecetas: Modifier,
+//    onToggleDarkMode: BasicViewModel,
+//    onChangeLanguage: NavHostController
+//) {
+//    var isDarkMode by remember { mutableStateOf(false) }
+//    var selectedLanguage by remember { mutableStateOf("Español") }
+//
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .padding(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(20.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        // Header
+//        Text(
+//            text = "Configuración",
+//            style = MaterialTheme.typography.headlineLarge
+//        )
+//
+//        // Reset Recipes Button
+//        Button(
+//            onClick = {
+//                onResetRecetas()
+//                recetaViewModel.initializedRecetaList(arrayListOf())
+//            },
+//            modifier = Modifier.fillMaxWidth()
+//        ) {
+//            Text("Resetear Recetas")
+//        }
+//
+//        // Dark Mode Toggle
+//        Row(
+//            modifier = Modifier.fillMaxWidth(),
+//            horizontalArrangement = Arrangement.SpaceBetween,
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Text("Modo Oscuro")
+//            Switch(
+//                checked = isDarkMode,
+//                onCheckedChange = {
+//                    isDarkMode = it
+//                    onToggleDarkMode(it)
+//                }
+//            )
+//        }
+//
+//        // Language Selector
+//        Column(
+//            modifier = Modifier.fillMaxWidth()
+//        ) {
+//            Text("Idioma")
+//            DropdownMenuExample(
+//                selectedLanguage = selectedLanguage,
+//                onLanguageSelected = {
+//                    selectedLanguage = it
+//                    onChangeLanguage(it)
+//                }
+//            )
+//        }
+//    }
+//}
 
 @Composable
 fun DropdownMenuExample(selectedLanguage: String, onLanguageSelected: (String) -> Unit) {
