@@ -143,7 +143,6 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             Button(
                 onClick = {
                     val nuevaReceta = infoReceta(
-                        IDreceta = imagenID, // Używamy aktualnego URI lub pustego URI
                         nombreReceta = nombreReceta,
                         ingredientes = ingredientes,
                         instrucciones = instrucciones,

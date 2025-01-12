@@ -1,7 +1,6 @@
 package com.example.kalugirecetasapp.dataClass
 
 class infoReceta(
-    var IDreceta: String,
     var nombreReceta: String,
     var ingredientes: String,
     var instrucciones: String,

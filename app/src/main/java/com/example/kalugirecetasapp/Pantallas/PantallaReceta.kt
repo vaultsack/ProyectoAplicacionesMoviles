@@ -65,7 +65,7 @@ import androidx.compose.foundation.layout.width
 fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
     /* Función que hace lo mismo que PantallaCantante() pero sin ViewModel */
 
-    var selectedReceta by remember { mutableStateOf(recetasList[2]) }
+    var selectedCard by remember { mutableStateOf(recetasList[2]) }
     Column(modifier = modifier) {
         // Crear fila de tarjetas (Cards Row). Corresponde a código en CrearListaCantantes()
         LazyRow(modifier = Modifier.padding(10.dp)) {
@@ -76,7 +76,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
                         .width(150.dp)
                         .height(100.dp)
                         .clickable {
-                            selectedReceta = index
+                            selectedCard = index
 
                         }
 
@@ -133,26 +133,26 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
 
         ) {
             AsyncImage(
-                selectedReceta.imagenID,
-                selectedReceta.nombreReceta,
+                selectedCard.imagenID,
+                selectedCard.nombreReceta,
                 contentScale = ContentScale.Crop
             )
 
             Row {
-                IconToggleButton(checked = selectedReceta.recetaFavorite == true,
-                    onCheckedChange = { selectedReceta.recetaFavorite = it }
+                IconToggleButton(checked = selectedCard.recetaFavorite == true,
+                    onCheckedChange = { selectedCard.recetaFavorite = it }
                 ) {
                     Icon(
                         imageVector =
-                        if (selectedReceta.recetaFavorite == true) Icons.Filled.Favorite
+                        if (selectedCard.recetaFavorite == true) Icons.Filled.Favorite
                         else Icons.Outlined.FavoriteBorder,
                         contentDescription =
-                        if (selectedReceta.recetaFavorite == true) "Favorito" else "No Favorito",
+                        if (selectedCard.recetaFavorite == true) "Favorito" else "No Favorito",
                         tint = Color.Red
                     )
                 }
                 Text(
-                    text = selectedReceta.nombreReceta,
+                    text = selectedCard.nombreReceta,
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .padding(12.dp),
@@ -165,7 +165,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
             }
             HorizontalDivider()
             Text(
-                text = selectedReceta.ingredientes,
+                text = selectedCard.ingredientes,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(12.dp),
@@ -175,7 +175,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
             )
             HorizontalDivider()
             Text(
-                text = selectedReceta.instrucciones,
+                text = selectedCard.instrucciones,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(12.dp),
@@ -202,16 +202,17 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
             inViewModel.updateInstrucciones(selectedReceta.instrucciones)
             inViewModel.updateIngredientes(selectedReceta.ingredientes)
             inViewModel.updaterecetaFavorite(selectedReceta.recetaFavorite)
+
             inViewModel.updateSelectedReceta(selectedReceta)
         }
 
-        val selectedReceta by inViewModel.selectedReceta.observeAsState(selectedReceta)
+        val selectedCard by inViewModel.selectedReceta.observeAsState(selectedReceta)
 
-        val imagenID by inViewModel.imagenID.observeAsState(selectedReceta.imagenID)
-        val nombreReceta by inViewModel.nombreReceta.observeAsState(selectedReceta.nombreReceta)
-        val Ingrediedntes by inViewModel.ingredientes.observeAsState(selectedReceta.ingredientes)
-        val Instrucciones by inViewModel.instrucciones.observeAsState(selectedReceta.instrucciones)
-        val recetaFavorite by inViewModel.recetaFavorite.observeAsState(selectedReceta.recetaFavorite)
+        val imagenID by inViewModel.imagenID.observeAsState(selectedCard.imagenID)
+        val nombreReceta by inViewModel.nombreReceta.observeAsState(selectedCard.nombreReceta)
+        val Ingrediedntes by inViewModel.ingredientes.observeAsState(selectedCard.ingredientes)
+        val Instrucciones by inViewModel.instrucciones.observeAsState(selectedCard.instrucciones)
+        val recetaFavorite by inViewModel.recetaFavorite.observeAsState(selectedCard.recetaFavorite)
 
 
 
@@ -370,7 +371,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
         /* TODO HECHO: recibe como parámetro la varaible del tipo ViewModel para pasarla como parámetro a CrearCardCantante y MostrarInfoCard() */
         inViewModel.setGrid(false)
 
-        val selectedReceta by inViewModel.selectedReceta.observeAsState(recetasList[0]) /* TODO con ViewModel sutituir la variable por la variable de ViewModel*/
+        val selectedCard by inViewModel.selectedReceta.observeAsState(recetasList[0]) /* TODO con ViewModel sutituir la variable por la variable de ViewModel*/
 
         Column(
             modifier = modifier
@@ -384,7 +385,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
             }
             Spacer(modifier = Modifier.size(30.dp))
             MostrarInfoCard(
-                selectedReceta,
+                selectedCard,
                 inViewModel
             ) /* TODO con ViewModel sutituir la variable por la variable de ViewModel*/
         }

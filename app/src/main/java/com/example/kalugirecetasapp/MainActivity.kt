@@ -135,6 +135,12 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
     val uriInstruccionesGnocchi = stringResource(R.string.instruccionesGnocchi)
     val uriInstruccionesTabule = stringResource(R.string.instruccionesTabule)
 
+    //tiempopreparacion
+
+    //dificultad
+
+    //
+
 
 
     //Lista inicial de Recetas
