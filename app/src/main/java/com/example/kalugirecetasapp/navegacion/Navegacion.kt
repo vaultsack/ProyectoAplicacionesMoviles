@@ -23,7 +23,7 @@ import com.example.kalugirecetasapp.dataClass.infoReceta
 fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
     val selectedReceta by inViewModel.selectedReceta.observeAsState(recetasList[0])
 
-    NavHost(navController = navController, startDestination = "receta") {
+    NavHost(navController, startDestination = "receta") {
         composable("busqueda") { PantallaBusqueda(recetasList, modifier, inViewModel,navController) }
         composable("receta") { PantallaReceta(recetasList, modifier, inViewModel,navController) }
         composable("recetaGrid") { PantallaRecetaGrid(recetasList, modifier, inViewModel,navController) }

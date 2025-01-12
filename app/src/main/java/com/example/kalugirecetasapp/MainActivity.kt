@@ -182,12 +182,12 @@ fun PantallaInicio(modifier: Modifier = Modifier, inViewModel: BasicViewModel) {
         drawerMenuItem(
             icon = R.drawable.baseline_home_24,
             title = "Inicio",
-            route = "pantallaInicio"
+            route = "receta"
         ),
         drawerMenuItem(
             icon = R.drawable.baseline_search_24,
             title = "Busqueda",
-            route = "pantallaBusqueda"
+            route = "busqueda"
         ),
         drawerMenuItem(
             icon = R.drawable.baseline_favorite_24,
@@ -197,12 +197,12 @@ fun PantallaInicio(modifier: Modifier = Modifier, inViewModel: BasicViewModel) {
         drawerMenuItem(
             icon = R.drawable.baseline_library_books_24,
             title = "Tus recetas",
-            route = "pantallaTusRecetas"
+            route = "recetaGrid"
         ),
         drawerMenuItem(
             icon = R.drawable.baseline_add_24,
             title = "Añadir",
-            route = "pantallaAnadir"
+            route = "pantalla_anadir"
         ),
         drawerMenuItem(
             icon = R.drawable.baseline_settings_24,
