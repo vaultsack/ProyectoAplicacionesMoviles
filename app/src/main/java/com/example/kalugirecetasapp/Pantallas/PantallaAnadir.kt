@@ -51,6 +51,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
         inViewModel.updateNombreReceta("")
         inViewModel.updateIngredientes("")
         inViewModel.updateInstrucciones("")
+        inViewModel.updateImagenID("")
         inViewModel.updaterecetaFavorite(false)
 
     }
@@ -60,14 +61,13 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
     val instrucciones: String by inViewModel.instrucciones.observeAsState("")
     val favorito: Boolean by inViewModel.recetaFavorite.observeAsState(false)
 
-    val uriAddReceta =
-        Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
+    val uriAddReceta = Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
 
     var imageUri by remember { mutableStateOf<Uri?>(uriAddReceta) }
 
     val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
+        contract = ActivityResultContracts.GetContent()) {
+        uri: Uri? ->
         imageUri = uri
         inViewModel.updateImagenID(imageUri.toString())
     }
@@ -143,7 +143,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             Button(
                 onClick = {
                     val nuevaReceta = infoReceta(
-                        IDreceta = imageUri ?: Uri.EMPTY, // Używamy aktualnego URI lub pustego URI
+                        IDreceta = imagenID, // Używamy aktualnego URI lub pustego URI
                         nombreReceta = nombreReceta,
                         ingredientes = ingredientes,
                         instrucciones = instrucciones,

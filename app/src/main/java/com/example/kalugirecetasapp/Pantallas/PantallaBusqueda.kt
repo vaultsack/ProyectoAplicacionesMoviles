@@ -31,6 +31,7 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.bars.TopBarBuscar
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PantallaBusqueda(listaFiachas: ArrayList<infoReceta>, modifier: Modifier = Modifier, inViewModel: BasicViewModel,navController: NavController) {

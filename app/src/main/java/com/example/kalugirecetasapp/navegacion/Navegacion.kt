@@ -18,6 +18,7 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.dataClass.infoReceta
 
 
+
 @Composable
 fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoReceta>, modifier:Modifier, inViewModel: BasicViewModel) {
     val selectedReceta by inViewModel.selectedReceta.observeAsState(recetasList[0])
@@ -27,7 +28,7 @@ fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoRecet
         composable("receta") { PantallaReceta(recetasList, modifier, inViewModel,navController) }
         composable("recetaGrid") { PantallaRecetaGrid(recetasList, modifier, inViewModel,navController) }
         composable("pantalla_anadir") { PantallaAddReceta(recetasList, modifier, inViewModel,navController) }
-        composable("cardInfo") { MostrarInfoCard(selectedReceta, inViewModel)}
+        composable("cardInfo") { MostrarInfoCard(selectedReceta, inViewModel) }
 
 
 
@@ -35,3 +36,5 @@ fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoRecet
     }
 
 }
+
+

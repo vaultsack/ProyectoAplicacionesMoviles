@@ -69,14 +69,15 @@ var recetaList = arrayListOf<infoReceta>()
 @Composable
 fun InitRecetaList(inViewModel: BasicViewModel) {
     //imagenes
-    val uriSpagettiCarboanra = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/spagetticarboanra")
+
+    val uriSpagettiCarboanra = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/spaghetticarbonara")
     val uriSushiMaki = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/sushimaki")
     val uriTacosAlPastor = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/tacospastor")
     val uriPaellaDeMariscosos = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/paellademarisco")
     val uriRatatouilles = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/rattatouille")
     val uriPadThai = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/padthai")
     val uriBroscht = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/borscht")
-    val uriCerviche = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/cerviche")
+    val uriCerviche = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/ceviche")
     val uriFalafel = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/falafel")
     val uriBaklava = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/baklava")
     val uriButterChicken = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/butterchicken")
@@ -84,7 +85,7 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
     val uriDimSum = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/dimsum")
     val uriFeijoada = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/feijoada")
     val uriKimchiJjigae = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/kimchijjigae")
-    val uriShepherdsPie = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/shepherd_s_pie")
+    val uriShepherdsPie = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/shepherdspie")
     val uriChurros = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/churros")
     val uriRamen =      Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/ramen")
     val uriGnocchi = Uri.parse("android.resource://com.example.kalugirecetasapp/drawable/gnocchi")
@@ -138,26 +139,26 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
 
     //Lista inicial de Recetas
     var initialRecetaList = arrayListOf<infoReceta>(
-        infoReceta( uriSpagettiCarboanra,"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, "Cena", "45 minutos", "Media", "spagetticarbonara", true),
-        infoReceta( uriSushiMaki,"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, "Cena", "45 minutos", "Media", "sushimaki", true),
-        infoReceta( uriTacosAlPastor,"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, "Cena", "45 minutos", "Media", "tacospastor", true),
-        infoReceta( uriPaellaDeMariscosos,"Paella de Mariscosos", uriIngredientesPaellaDeMariscosos, uriInstruccionesPaellaDeMariscosos, "Cena", "45 minutos", "Media", "paellademarisco", true),
-        infoReceta( uriRatatouilles,"Ratatouille", uriIngredientesRatatouilles, uriInstruccionesRatatouilles, "Cena", "45 minutos", "Media", "ratatouille", true),
-        infoReceta( uriPadThai,"Pad Thai", uriIngredientesPadThai, uriInstruccionesPadThai, "Cena", "45 minutos", "Media", "padthai", true),
-        infoReceta( uriBroscht,"Broscht", uriIngredientesBroscht, uriInstruccionesBroscht, "Cena", "45 minutos", "Media", "borscht", true),
-        infoReceta( uriCerviche,"Cerviche", uriIngredientesCerviche, uriInstruccionesCerviche, "Cena", "45 minutos", "Media", "cerviche", true),
-        infoReceta( uriFalafel,"Falafel", uriIngredientesFalafel, uriInstruccionesFalafel, "Cena", "45 minutos", "Media", "falafel", true),
-        infoReceta( uriBaklava,"Baklava", uriIngredientesBaklava, uriInstruccionesBaklava, "Cena", "45 minutos", "Media", "baklava", true),
-        infoReceta( uriButterChicken,"Butter Chicken", uriIngredientesButterChicken, uriInstruccionesButterChicken, "Cena", "45 minutos", "Media", "butterchicken", true),
-        infoReceta( uriPoutine,"Poutine", uriIngredientesPoutine, uriInstruccionesPoutine, "Cena", "45 minutos", "Media", "poutine", true),
-        infoReceta( uriDimSum,"Dim Sum", uriIngredientesDimSum, uriInstruccionesDimSum, "Cena", "45 minutos", "Media", "dimsum", true),
-        infoReceta( uriFeijoada,"Feijoada", uriIngredientesFeijoada, uriInstruccionesFeijoada, "Cena", "45 minutos", "Media", "feijoada", true),
-        infoReceta( uriKimchiJjigae,"Kimchi Jjigae", uriIngredientesKimchiJjigae, uriInstruccionesKimchiJjigae, "Cena", "45 minutos", "Media", "kimchijjigae", true),
-        infoReceta( uriShepherdsPie,"Shepherds Pie", uriIngredientesShepherdsPie, uriInstruccionesShepherdsPie, "Cena", "45 minutos", "Media", "shepherd_s_pie", true),
-        infoReceta( uriChurros,"Churros", uriIngredientesChurros, uriInstruccionesChurros, "Cena", "45 minutos", "Media", "churros", true),
-        infoReceta( uriRamen,"Ramen", uriIngredientesRamen, uriInstruccionesRamen, "Cena", "45 minutos", "Media", "ramen", true),
-        infoReceta( uriGnocchi,"Gnocchi", uriIngredientesGnocchi, uriInstruccionesGnocchi, "Cena", "45 minutos", "Media", "gnocchi", true),
-        infoReceta( uriTabule,"Tabule", uriIngredientesTabule, uriInstruccionesTabule, "Cena", "45 minutos", "Media", "tabule", true),
+        infoReceta( uriSpagettiCarboanra.toString(),"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, "Cena", "45 minutos", "Media", "spagetticarbonara", true),
+        infoReceta( uriSushiMaki.toString(),"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, "Cena", "45 minutos", "Media", "sushimaki", true),
+        infoReceta( uriTacosAlPastor.toString(),"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, "Cena", "45 minutos", "Media", "tacospastor", true),
+        infoReceta( uriPaellaDeMariscosos.toString(),"Paella de Mariscosos", uriIngredientesPaellaDeMariscosos, uriInstruccionesPaellaDeMariscosos, "Cena", "45 minutos", "Media", "paellademarisco", true),
+        infoReceta( uriRatatouilles.toString(),"Ratatouille", uriIngredientesRatatouilles, uriInstruccionesRatatouilles, "Cena", "45 minutos", "Media", "ratatouille", true),
+        infoReceta( uriPadThai.toString(),"Pad Thai", uriIngredientesPadThai, uriInstruccionesPadThai, "Cena", "45 minutos", "Media", "padthai", true),
+        infoReceta( uriBroscht.toString(),"Broscht", uriIngredientesBroscht, uriInstruccionesBroscht, "Cena", "45 minutos", "Media", "borscht", true),
+        infoReceta( uriCerviche.toString(),"Cerviche", uriIngredientesCerviche, uriInstruccionesCerviche, "Cena", "45 minutos", "Media", "cerviche", true),
+        infoReceta( uriFalafel.toString(),"Falafel", uriIngredientesFalafel, uriInstruccionesFalafel, "Cena", "45 minutos", "Media", "falafel", true),
+        infoReceta( uriBaklava.toString(),"Baklava", uriIngredientesBaklava, uriInstruccionesBaklava, "Cena", "45 minutos", "Media", "baklava", true),
+        infoReceta( uriButterChicken.toString(),"Butter Chicken", uriIngredientesButterChicken, uriInstruccionesButterChicken, "Cena", "45 minutos", "Media", "butterchicken", true),
+        infoReceta( uriPoutine.toString(),"Poutine", uriIngredientesPoutine, uriInstruccionesPoutine, "Cena", "45 minutos", "Media", "poutine", true),
+        infoReceta( uriDimSum.toString(),"Dim Sum", uriIngredientesDimSum, uriInstruccionesDimSum, "Cena", "45 minutos", "Media", "dimsum", true),
+        infoReceta( uriFeijoada.toString(),"Feijoada", uriIngredientesFeijoada, uriInstruccionesFeijoada, "Cena", "45 minutos", "Media", "feijoada", true),
+        infoReceta( uriKimchiJjigae.toString(),"Kimchi Jjigae", uriIngredientesKimchiJjigae, uriInstruccionesKimchiJjigae, "Cena", "45 minutos", "Media", "kimchijjigae", true),
+        infoReceta( uriShepherdsPie.toString(),"Shepherds Pie", uriIngredientesShepherdsPie, uriInstruccionesShepherdsPie, "Cena", "45 minutos", "Media", "shepherd_s_pie", true),
+        infoReceta( uriChurros.toString(),"Churros", uriIngredientesChurros, uriInstruccionesChurros, "Cena", "45 minutos", "Media", "churros", true),
+        infoReceta( uriRamen.toString(),"Ramen", uriIngredientesRamen, uriInstruccionesRamen, "Cena", "45 minutos", "Media", "ramen", true),
+        infoReceta( uriGnocchi.toString(),"Gnocchi", uriIngredientesGnocchi, uriInstruccionesGnocchi, "Cena", "45 minutos", "Media", "gnocchi", true),
+        infoReceta( uriTabule.toString(),"Tabule", uriIngredientesTabule, uriInstruccionesTabule, "Cena", "45 minutos", "Media", "tabule", true),
 
     )
     inViewModel.initializedRecetaList(initialRecetaList)

@@ -1,9 +1,7 @@
 package com.example.kalugirecetasapp.dataClass
 
-import android.net.Uri
-
 class infoReceta(
-    var IDreceta: Uri,
+    var IDreceta: String,
     var nombreReceta: String,
     var ingredientes: String,
     var instrucciones: String,
