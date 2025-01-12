@@ -142,16 +142,7 @@ fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inV
             val newList by inViewModel.recetaList.observeAsState(recetaList)
             Button(
                 onClick = {
-                    val nuevaReceta = infoReceta(
-                        nombreReceta = nombreReceta,
-                        ingredientes = ingredientes,
-                        instrucciones = instrucciones,
-                        categoria = "Cena",
-                        tiempoPreparacion = "45 minutos",
-                        dificultad = "Media",
-                        imagenID = imagenID, // Pobieramy wartość `imagenID` z ViewModel
-                        recetaFavorite = favorito // Ustawiamy wartość ulubionej recepty
-                    )
+                    val nuevaReceta = infoReceta(imagenID,nombreReceta, ingredientes, instrucciones,recetaFavorite = true)
                     inViewModel.updateRecetaList(ArrayList(newList), nuevaReceta)
 
                     navController.navigate("receta")

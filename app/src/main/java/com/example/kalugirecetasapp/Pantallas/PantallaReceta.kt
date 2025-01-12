@@ -59,6 +59,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.VerticalDivider
 
 
 @Composable
@@ -255,7 +256,7 @@ fun Receta(recetasList: ArrayList<infoReceta>, modifier: Modifier) {
                     fontStyle = FontStyle.Italic
                 )
             }
-            HorizontalDivider()
+            VerticalDivider()
             Text(
                 text = Ingrediedntes, /* TODO HECHO sustituir selectedCard.albumsName por variable que observa en el ViewModel valor albumsName */
                 modifier = Modifier

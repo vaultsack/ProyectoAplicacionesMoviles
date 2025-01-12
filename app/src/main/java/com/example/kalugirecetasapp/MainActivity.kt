@@ -135,7 +135,9 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
     val uriInstruccionesGnocchi = stringResource(R.string.instruccionesGnocchi)
     val uriInstruccionesTabule = stringResource(R.string.instruccionesTabule)
 
-    //tiempopreparacion
+    //categoria
+
+    //tiempoPreparacion
 
     //dificultad
 
@@ -145,26 +147,26 @@ fun InitRecetaList(inViewModel: BasicViewModel) {
 
     //Lista inicial de Recetas
     var initialRecetaList = arrayListOf<infoReceta>(
-        infoReceta( uriSpagettiCarboanra.toString(),"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, "Cena", "45 minutos", "Media", "spagetticarbonara", true),
-        infoReceta( uriSushiMaki.toString(),"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, "Cena", "45 minutos", "Media", "sushimaki", true),
-        infoReceta( uriTacosAlPastor.toString(),"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, "Cena", "45 minutos", "Media", "tacospastor", true),
-        infoReceta( uriPaellaDeMariscosos.toString(),"Paella de Mariscosos", uriIngredientesPaellaDeMariscosos, uriInstruccionesPaellaDeMariscosos, "Cena", "45 minutos", "Media", "paellademarisco", true),
-        infoReceta( uriRatatouilles.toString(),"Ratatouille", uriIngredientesRatatouilles, uriInstruccionesRatatouilles, "Cena", "45 minutos", "Media", "ratatouille", true),
-        infoReceta( uriPadThai.toString(),"Pad Thai", uriIngredientesPadThai, uriInstruccionesPadThai, "Cena", "45 minutos", "Media", "padthai", true),
-        infoReceta( uriBroscht.toString(),"Broscht", uriIngredientesBroscht, uriInstruccionesBroscht, "Cena", "45 minutos", "Media", "borscht", true),
-        infoReceta( uriCerviche.toString(),"Cerviche", uriIngredientesCerviche, uriInstruccionesCerviche, "Cena", "45 minutos", "Media", "cerviche", true),
-        infoReceta( uriFalafel.toString(),"Falafel", uriIngredientesFalafel, uriInstruccionesFalafel, "Cena", "45 minutos", "Media", "falafel", true),
-        infoReceta( uriBaklava.toString(),"Baklava", uriIngredientesBaklava, uriInstruccionesBaklava, "Cena", "45 minutos", "Media", "baklava", true),
-        infoReceta( uriButterChicken.toString(),"Butter Chicken", uriIngredientesButterChicken, uriInstruccionesButterChicken, "Cena", "45 minutos", "Media", "butterchicken", true),
-        infoReceta( uriPoutine.toString(),"Poutine", uriIngredientesPoutine, uriInstruccionesPoutine, "Cena", "45 minutos", "Media", "poutine", true),
-        infoReceta( uriDimSum.toString(),"Dim Sum", uriIngredientesDimSum, uriInstruccionesDimSum, "Cena", "45 minutos", "Media", "dimsum", true),
-        infoReceta( uriFeijoada.toString(),"Feijoada", uriIngredientesFeijoada, uriInstruccionesFeijoada, "Cena", "45 minutos", "Media", "feijoada", true),
-        infoReceta( uriKimchiJjigae.toString(),"Kimchi Jjigae", uriIngredientesKimchiJjigae, uriInstruccionesKimchiJjigae, "Cena", "45 minutos", "Media", "kimchijjigae", true),
-        infoReceta( uriShepherdsPie.toString(),"Shepherds Pie", uriIngredientesShepherdsPie, uriInstruccionesShepherdsPie, "Cena", "45 minutos", "Media", "shepherd_s_pie", true),
-        infoReceta( uriChurros.toString(),"Churros", uriIngredientesChurros, uriInstruccionesChurros, "Cena", "45 minutos", "Media", "churros", true),
-        infoReceta( uriRamen.toString(),"Ramen", uriIngredientesRamen, uriInstruccionesRamen, "Cena", "45 minutos", "Media", "ramen", true),
-        infoReceta( uriGnocchi.toString(),"Gnocchi", uriIngredientesGnocchi, uriInstruccionesGnocchi, "Cena", "45 minutos", "Media", "gnocchi", true),
-        infoReceta( uriTabule.toString(),"Tabule", uriIngredientesTabule, uriInstruccionesTabule, "Cena", "45 minutos", "Media", "tabule", true),
+        infoReceta( uriSpagettiCarboanra.toString(),"Spagetti Carbonara", uriIngredientesSpagettiCarboanra, uriInstruccionesSpagettiCarboanra, true),
+        infoReceta( uriSushiMaki.toString(),"Sushi Maki", uriIngredientesSushiMaki, uriInstruccionesSushiMaki, true),
+        infoReceta( uriTacosAlPastor.toString(),"Tacos al Pastor", uriIngredientesTacosAlPastor, uriInstruccionesTacosAlPastor, true),
+        infoReceta( uriPaellaDeMariscosos.toString(),"Paella de Mariscosos", uriIngredientesPaellaDeMariscosos, uriInstruccionesPaellaDeMariscosos, true),
+        infoReceta( uriRatatouilles.toString(),"Ratatouille", uriIngredientesRatatouilles, uriInstruccionesRatatouilles, true),
+        infoReceta( uriPadThai.toString(),"Pad Thai", uriIngredientesPadThai, uriInstruccionesPadThai,  true),
+        infoReceta( uriBroscht.toString(),"Broscht", uriIngredientesBroscht, uriInstruccionesBroscht, true),
+        infoReceta( uriCerviche.toString(),"Cerviche", uriIngredientesCerviche, uriInstruccionesCerviche, true),
+        infoReceta( uriFalafel.toString(),"Falafel", uriIngredientesFalafel, uriInstruccionesFalafel,  true),
+        infoReceta( uriBaklava.toString(),"Baklava", uriIngredientesBaklava, uriInstruccionesBaklava,  true),
+        infoReceta( uriButterChicken.toString(),"Butter Chicken", uriIngredientesButterChicken, uriInstruccionesButterChicken,  true),
+        infoReceta( uriPoutine.toString(),"Poutine", uriIngredientesPoutine, uriInstruccionesPoutine,  true),
+        infoReceta( uriDimSum.toString(),"Dim Sum", uriIngredientesDimSum, uriInstruccionesDimSum,  true),
+        infoReceta( uriFeijoada.toString(),"Feijoada", uriIngredientesFeijoada, uriInstruccionesFeijoada,  true),
+        infoReceta( uriKimchiJjigae.toString(),"Kimchi Jjigae", uriIngredientesKimchiJjigae, uriInstruccionesKimchiJjigae, true),
+        infoReceta( uriShepherdsPie.toString(),"Shepherds Pie", uriIngredientesShepherdsPie, uriInstruccionesShepherdsPie,  true),
+        infoReceta( uriChurros.toString(),"Churros", uriIngredientesChurros, uriInstruccionesChurros,  true),
+        infoReceta( uriRamen.toString(),"Ramen", uriIngredientesRamen, uriInstruccionesRamen,  true),
+        infoReceta( uriGnocchi.toString(),"Gnocchi", uriIngredientesGnocchi, uriInstruccionesGnocchi, true),
+        infoReceta( uriTabule.toString(),"Tabule", uriIngredientesTabule, uriInstruccionesTabule,  true),
 
     )
     inViewModel.initializedRecetaList(initialRecetaList)
