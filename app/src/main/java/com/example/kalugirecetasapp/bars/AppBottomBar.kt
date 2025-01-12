@@ -29,13 +29,13 @@ fun BottomNavigationBar(navController: NavController) {
             icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
             label = { Text("Inicio") },
             selected = (selectedItem.value == 0),
-            onClick = { navController.navigate("pantallaInicio") }
+            onClick = { navController.navigate("receta") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Default.Search, contentDescription = "Búsqueda") },
             label = { Text("Búsqueda") },
             selected = (selectedItem.value == 1),
-            onClick = { navController.navigate("pantallaBusqueda") }
+            onClick = { navController.navigate("busqueda") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },

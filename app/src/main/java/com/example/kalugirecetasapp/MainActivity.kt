@@ -257,7 +257,7 @@ fun PantallaInicio(modifier: Modifier = Modifier, inViewModel: BasicViewModel) {
             floatingActionButton = {
                 ExtendedFloatingActionButton(
 
-                    onClick = { navController.navigate("addReceta")},
+                    onClick = { navController.navigate("pantalla_anadir")},
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.baseline_add_24),

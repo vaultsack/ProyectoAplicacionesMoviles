@@ -7,6 +7,7 @@ import com.example.kalugirecetasapp.dataClass.infoReceta
 
 class BasicViewModel:ViewModel() {
 
+
     private val _IDreceta = MutableLiveData<String>("")
     val IDreceta: LiveData<String> = _IDreceta
 
@@ -99,9 +100,32 @@ class BasicViewModel:ViewModel() {
     fun setGrid(newGrid: Boolean) {
         _isGrid.value = newGrid
 
+    }
+    private val _userName = MutableLiveData<String>("")
+    val userName: LiveData<String> = _userName
 
-
-
+    fun updateUserName(newUserName: String) {
+        _userName.value = newUserName
 
     }
+    private val _isDarkMode = MutableLiveData(false)
+    val isDarkMode: LiveData<Boolean> = _isDarkMode
+
+    private val _selectedLanguage = MutableLiveData("Español")
+    val selectedLanguage: LiveData<String> = _selectedLanguage
+
+
+
+    fun toggleDarkMode(isDark: Boolean) {
+        _isDarkMode.value = isDark
+    }
+
+    fun changeLanguage(language: String) {
+        _selectedLanguage.value = language
+    }
+
+    fun resetRecetas() {
+        TODO("Not yet implemented")
+    }
+
 }

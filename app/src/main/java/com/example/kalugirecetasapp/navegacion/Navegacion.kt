@@ -11,7 +11,9 @@ import com.example.kalugirecetasapp.PantallaInicio
 import com.example.kalugirecetasapp.Pantallas.MostrarInfoCard
 import com.example.kalugirecetasapp.Pantallas.PantallaAddReceta
 import com.example.kalugirecetasapp.Pantallas.PantallaBusqueda
+import com.example.kalugirecetasapp.Pantallas.PantallaConfiguracion
 import com.example.kalugirecetasapp.Pantallas.PantallaFavoritos
+import com.example.kalugirecetasapp.Pantallas.PantallaPerfil
 import com.example.kalugirecetasapp.Pantallas.PantallaReceta
 import com.example.kalugirecetasapp.Pantallas.PantallaRecetaGrid
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
@@ -29,6 +31,9 @@ fun Navegacion(navController: NavHostController, recetasList:ArrayList<infoRecet
         composable("recetaGrid") { PantallaRecetaGrid(recetasList, modifier, inViewModel,navController) }
         composable("pantalla_anadir") { PantallaAddReceta(recetasList, modifier, inViewModel,navController) }
         composable("cardInfo") { MostrarInfoCard(selectedReceta, inViewModel) }
+        composable("pantallaFavoritos") { PantallaFavoritos(recetasList, modifier, inViewModel,navController) }
+        composable("pantallaPerfil") { PantallaPerfil(recetasList, modifier, inViewModel,navController) }
+        composable("pantallaConfiguracion") { PantallaConfiguracion( inViewModel, navController) }
 
 
 
