@@ -1,55 +1,40 @@
 package com.example.kalugirecetasapp.bars
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import java.lang.reflect.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.kalugirecetasapp.navegacion.Pantallas
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
-    val selectedItem = remember { mutableStateOf(0) }
+fun AppBottomBar(navController: NavController) {
     NavigationBar {
-        NavigationBarItem(
-            icon = { Icon(Icons.Default.Home, contentDescription = "Inicio") },
-            label = { Text("Inicio") },
-            selected = (selectedItem.value == 0),
-            onClick = { navController.navigate("receta") }
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
+        val items = listOf(
+            Triple("Inicio", Icons.Default.Home, Pantallas.PantallaInicio.route),
+            Triple("Buscar", Icons.Default.Search, Pantallas.PantallaBusqueda.route),
+            Triple("Favoritos", Icons.Default.Favorite, Pantallas.PantallaFavoritos.route),
+            Triple("Perfil", Icons.Default.Person, Pantallas.PantallaPerfil.route)
         )
-        NavigationBarItem(
-            icon = { Icon(Icons.Default.Search, contentDescription = "Búsqueda") },
-            label = { Text("Búsqueda") },
-            selected = (selectedItem.value == 1),
-            onClick = { navController.navigate("busqueda") }
-        )
-        NavigationBarItem(
-            icon = { Icon(Icons.Default.Favorite, contentDescription = "Favoritos") },
-            label = { Text("Favoritos") },
-            selected = (selectedItem.value == 2),
-            onClick = { navController.navigate("pantallaFavoritos") }
-        )
-        NavigationBarItem(
-            icon = { Icon(Icons.Default.Person, contentDescription = "Perfil") },
-            label = { Text("Perfil") },
-            selected = (selectedItem.value == 3),
-            onClick = { navController.navigate("pantallaPerfil") }
-        )
+
+        items.forEach { (title, icon, route) ->
+            NavigationBarItem(
+                icon = { Icon(icon, contentDescription = title) },
+                label = { Text(title) },
+                selected = currentRoute == route,
+                onClick = {
+                    if (currentRoute != route) {
+                        navController.navigate(route) {
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
+                    }
+                }
+            )
+        }
     }
 }
-
-

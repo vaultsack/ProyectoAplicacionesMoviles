@@ -1,69 +1,53 @@
 package com.example.kalugirecetasapp.Pantallas
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
-import com.example.kalugirecetasapp.bars.TopBarBuscar
-import com.example.kalugirecetasapp.dataClass.infoReceta
+import com.example.kalugirecetasapp.componentes.RecetaCard
 
-
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PantallaBusqueda(listaFiachas: ArrayList<infoReceta>, modifier: Modifier = Modifier, inViewModel: BasicViewModel,navController: NavController) {
-    val palabraABuscar = remember { mutableStateOf(TextFieldValue("")) }
+fun PantallaBusqueda(viewModel: BasicViewModel, navController: NavController) {
+    var searchQuery by remember { mutableStateOf("") }
+
     Column(
-        modifier = modifier,
-    ){
-        TopBarBuscar(palabraABuscar)
-        BuscarEnLista(palabraABuscar,listaFiachas,modifier,inViewModel,navController)
-    }
-}
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        OutlinedTextField(
+            value = searchQuery,
+            onValueChange = { searchQuery = it },
+            modifier = Modifier.fillMaxWidth(),
+            placeholder = { Text("Buscar recetas...") },
+            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) }
+        )
 
-@Composable
-fun BuscarEnLista(palabraABuscar: MutableState<TextFieldValue>, listaRecetas:ArrayList<infoReceta>, modifier: Modifier = Modifier, inViewModel: BasicViewModel, navController: NavController)
-{
-    var listaFiltrada = listaRecetas
-    val textABuscar = palabraABuscar.value.text
+        Spacer(modifier = Modifier.height(16.dp))
 
-    listaFiltrada = if (textABuscar.isEmpty()) listaRecetas
-    else {
-        val resultList = ArrayList<infoReceta>()
-        for (singer in listaRecetas){
-            if (singer.nombreReceta.lowercase().contains(textABuscar.lowercase(),true)){
-                resultList.add(singer)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            val recetas = viewModel.listaRecetas.value ?: emptyList()
+            items(recetas.filter {
+                it.nombre.contains(searchQuery, ignoreCase = true)
+            }) { receta ->
+                RecetaCard(
+                    receta = receta,
+                    onClick = { /* TODO: Implementar acción al hacer clic */ }
+                )
             }
         }
-        resultList
     }
-
-    /* Llamada si se utiliza sin ViewModel
-    Cantante(listaFiltrada,modifier.padding(start = 10.dp)) */
-
-    PantallaReceta(listaFiltrada,modifier.padding(start = 10.dp),inViewModel, navController )
-
 }

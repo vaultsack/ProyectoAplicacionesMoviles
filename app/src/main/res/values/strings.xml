@@ -1,87 +1,11 @@
 <resources>
     <string name="app_name">KalugiRecetasApp</string>
-    <string name="ingredientesSpagettiCarboanra"> Ingredientes: 400 g de espaguetis,150 g de panceta,3 yemas de huevo,100 g de queso parmesano rallado,sal, pimienta negra.</string>
-    <string name="ingredientesSushiMaki">Ingredientes: 2 tazas de arroz para sushi, 4 hojas de alga nori, 200 g de pescado fresco (salmón o atún), pepino en tiras, vinagre de arroz, azúcar, sal.</string>
-    <string name="ingredientesTacosAlPastor">Ingredientes: 500 g de cerdo marinado en achiote, piña en trozos, 8 tortillas de maíz, cebolla picada, cilantro. </string>
-    <string name="ingredientesPaellaDeMariscosos">Ingredientes: 300 g de arroz, 1 l de caldo de pescado, 200 g de camarones, 150 g de mejillones, 100 g de calamares, azafrán, pimientos, ajo, aceite de oliva. </string>
-    <string name="ingredientesRatatouilles">Ingredientes: 1 berenjena, 1 calabacín, 1 pimiento rojo, 2 tomates, aceite de oliva, hierbas provenzales, sal, pimienta.</string>
-    <string name="ingredientesPadThai">Ingredientes: 200 g de fideos de arroz, 150 g de camarones, 2 huevos, maní triturado, brotes de soja, salsa de tamarindo, ajo, aceite.</string>
-    <string name="ingredientesBroscht">Ingredientes: 3 remolachas, 2 zanahorias, 2 patatas, 1 cebolla, caldo de carne, crema agria.</string>
-    <string name="ingredientesCerviche">Ingredientes: 300 g de pescado blanco fresco, jugo de 4 limas, 1 cebolla morada, cilantro, ají.</string>
-    <string name="ingredientesFalafel">Ingredientes: 300 g de garbanzos, ajo, perejil, comino, harina, aceite para freír.</string>
-    <string name="ingredientesBaklava">Ingredientes: Masa filo, nueces picadas, mantequilla derretida, almíbar (azúcar, agua, miel).</string>
-    <string name="ingredientesButterChicken">Ingredientes: 500 g de pollo, 1 taza de tomate triturado, 1 taza de crema, 2 cucharadas de mantequilla, especias (garam masala, cúrcuma, jengibre).</string>
-    <string name="ingredientesPoutine">Ingredientes: Papas fritas, queso en grano, salsa de carne (gravy).</string>
-    <string name="ingredientesDimSum">Ingredientes: Masa para dumplings, carne de cerdo picada, camarones, jengibre, salsa de soya.</string>
-    <string name="ingredientesFeijoada">Ingredientes: 500 g de frijoles negros, 200 g de carne de cerdo, 200 g de chorizo, cebolla, ajo, laurel.</string>
-    <string name="ingredientesKimchiJjigae">Ingredientes: 200 g de kimchi, tofu, cerdo, caldo de verduras, ajo, aceite de sésamo.</string>
-    <string name="ingredientesShepherdsPie">Ingredientes: 500 g de carne molida, 500 g de puré de papas, zanahorias, guisantes, caldo de carne.</string>
-    <string name="ingredientesChurros">Ingredientes: 1 taza de harina, 1 taza de agua, 1 cucharada de mantequilla, azúcar, canela, aceite para freír.</string>
-    <string name="ingredientesRamen">Ingredientes: Fideos ramen, caldo de pollo, huevo cocido, puerros, algas, cerdo asado.</string>
-    <string name="ingredientesGnocchi">Ingredientes: 500 g de papas, 150 g de harina, 1 huevo, sal, salsa de tomate.</string>
-    <string name="ingredientesTabule">Ingredientes: 200 g de cuscús, 2 tomates, 1 pepino, perejil, menta, jugo de limón, aceite de oliva.</string>
-
-    <string name="instruccionesSpagettiCarboanra">Instrucciones: Cocina los espaguetis en agua con sal hasta que estén al dente.
-Sofríe la panceta en una sartén hasta que quede dorada.
-Mezcla las yemas de huevo con el parmesano, sal y pimienta.
-Incorpora la panceta caliente y los espaguetis escurridos a la mezcla de huevo. Revuelve fuera del fuego hasta que la salsa se vuelva cremosa.</string>
-    <string name="instruccionesSushiMaki">Instrucciones: Cocina el arroz, mezcla con vinagre de arroz, azúcar y sal.
-Sobre una hoja de nori, extiende el arroz.
-Coloca el pescado y pepino, enrolla con una esterilla y corta en piezas.</string>
-    <string name="instruccionesTacosAlPastor">Instrucciones: Cocina el cerdo marinado en una plancha hasta dorar.
-Calienta las tortillas y sirve el cerdo con piña, cebolla y cilantro.</string>
-    <string name="instruccionesPaellaDeMariscosos">Instrucciones: Sofríe ajo, pimientos y calamares.
-Añade arroz y caldo con azafrán. Cocina a fuego lento.
-Agrega los mariscos y cocina hasta que estén tiernos.</string>
-    <string name="instruccionesRatatouilles">Instrucciones: Corta las verduras en rodajas.
-Colócalas en una fuente de horno alternándolas.
-Rocía con aceite y hierbas. Hornea a 180°C por 40 minutos.</string>
-    <string name="instruccionesPadThai">Instrucciones: Saltea ajo y camarones.
-Añade los fideos cocidos, huevo batido y salsa de tamarindo.
-Mezcla bien y sirve con maní y brotes.</string>
-    <string name="instruccionesBroscht">Instrucciones: Cocina las verduras en el caldo.
-Licua parte del caldo y mezcla con el resto.
-Sirve con crema agria.</string>
-    <string name="instruccionesCerviche">Instrucciones: Marina el pescado en jugo de lima.
-Añade cebolla, ají y cilantro picado.
-Sirve frío.</string>
-    <string name="instruccionesFalafel">Instrucciones: Tritura los garbanzos con ajo y perejil.
-Forma bolitas, pásalas por harina y fríelas.
-Sirve en pita con ensalada y tahini.</string>
-    <string name="instruccionesBaklava">Instrucciones: Alterna capas de masa filo con nueces y mantequilla.
-Hornea a 180°C por 30 minutos.
-Baña con almíbar caliente.</string>
-    <string name="instruccionesButterChicken">Instrucciones: Marina el pollo en yogur y especias por 1 hora.
-Cocina el pollo en mantequilla hasta dorar.
-Añade el tomate y cocina a fuego lento. Agrega la crema y ajusta los condimentos.</string>
-    <string name="instruccionesPoutine">Instrucciones: Fríe las papas hasta dorar.
-Coloca las papas en un plato, añade queso y cubre con la salsa caliente.</string>
-    <string name="instruccionesDimSum">Instrucciones: Mezcla los ingredientes del relleno.
-Rellena la masa y cierra en forma de pequeños paquetes.
-Cocina al vapor durante 10 minutos.</string>
-    <string name="instruccionesFeijoada">Instrucciones: Cocina los frijoles en agua hasta que estén tiernos.
-Sofríe cebolla y ajo, añade la carne y cocina hasta dorar.
-Incorpora los frijoles y cocina a fuego lento.</string>
-    <string name="instruccionesKimchiJjigae">Instrucciones: Cocina el cerdo con ajo y aceite de sésamo.
-Añade el kimchi y el caldo, hierve durante 15 minutos.
-Incorpora el tofu en trozos y cocina 5 minutos más.</string>
-    <string name="instruccionesShepherdsPie">Instrucciones: Cocina la carne molida con las verduras y el caldo.
-Coloca la mezcla en un molde, cubre con puré de papas.
-Hornea a 200°C durante 20 minutos.</string>
-    <string name="instruccionesChurros">Instrucciones: Hierve agua con mantequilla, añade harina y mezcla hasta formar una masa.
-Forma los churros con una manga pastelera y fríelos.
-Espolvorea con azúcar y canela.</string>
-    <string name="instruccionesRamen">Instrucciones: Cocina los fideos en agua.
-Calienta el caldo con puerros y cerdo.
-Sirve los fideos en el caldo, añade huevo y algas.</string>
-    <string name="instruccionesGnocchi">Instrucciones: Cocina y tritura las papas, mezcla con harina, huevo y sal.
-Forma pequeñas bolitas y cocina en agua hirviendo hasta que floten.
-Sirve con salsa de tomate.</string>
-    <string name="instruccionesTabule">Instrucciones: Cocina el cuscús según las instrucciones del paquete.
-Mezcla con vegetales picados, perejil, menta, limón y aceite.
-Sirve frío como ensalada.</string>
-
-
-
-
+    <string name="inicio">Inicio</string>
+    <string name="buscar">Buscar</string>
+    <string name="favoritos">Favoritos</string>
+    <string name="perfil">Perfil</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="que_cocinar">¿Qué te gustaría cocinar hoy?</string>
 </resources>

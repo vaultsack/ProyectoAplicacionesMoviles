@@ -1,131 +1,76 @@
 package com.example.kalugirecetasapp.ViewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.kalugirecetasapp.dataClass.infoReceta
+import com.example.kalugirecetasapp.R
+import com.example.kalugirecetasapp.model.Categoria
+import com.example.kalugirecetasapp.model.Receta
 
-class BasicViewModel:ViewModel() {
+class BasicViewModel : ViewModel() {
+    val categorias = listOf(
+        Categoria("1", "Desayunos", R.drawable.baseline_cookie_24),
+        Categoria("2", "Comidas", R.drawable.baseline_library_books_24),
+        Categoria("3", "Cenas", R.drawable.baseline_home_24),
+        Categoria("4", "Postres", R.drawable.baseline_favorite_24),
+        Categoria("5", "Bebidas", R.drawable.baseline_settings_24),
+        Categoria("6", "Snacks", R.drawable.baseline_search_24)
+    )
 
+    private val _listaRecetas = mutableStateOf<List<Receta>>(
+        listOf(
+            Receta(
+                id = "1",
+                nombre = "Spaghetti Carbonara",
+                imagen = R.drawable.spaghetticarbonara,
+                descripcion = "Deliciosa pasta carbonara tradicional",
+                ingredientes = listOf(
+                    "400g espaguetis",
+                    "200g panceta",
+                    "4 yemas de huevo",
+                    "100g queso parmesano",
+                    "Pimienta negra"
+                ),
+                pasos = listOf(
+                    "Cocinar la pasta al dente",
+                    "Dorar la panceta",
+                    "Mezclar yemas con queso",
+                    "Combinar todo y servir"
+                ),
+                tiempoPreparacion = 30,
+                porciones = 4,
+                dificultad = "Media",
+                categoria = "Comidas",
+                esFavorito = false
+            ),
+            Receta(
+                id = "2",
+                nombre = "Paella de Marisco",
+                imagen = R.drawable.paellademarisco,
+                descripcion = "Auténtica paella española de mariscos",
+                ingredientes = listOf(
+                    "Arroz bomba",
+                    "Mariscos variados",
+                    "Azafrán",
+                    "Caldo de pescado"
+                ),
+                pasos = listOf(
+                    "Preparar el sofrito",
+                    "Añadir arroz y caldo",
+                    "Incorporar mariscos",
+                    "Dejar reposar"
+                ),
+                tiempoPreparacion = 45,
+                porciones = 6,
+                dificultad = "Alta",
+                categoria = "Comidas",
+                esFavorito = false
+            )
+            // Puedes agregar más recetas siguiendo el mismo patrón
+        )
+    )
+    val listaRecetas = _listaRecetas
 
-    private val _IDreceta = MutableLiveData<String>("")
-    val IDreceta: LiveData<String> = _IDreceta
-
-
-    private val _nombreReceta = MutableLiveData<String>("")
-    val nombreReceta: LiveData<String> = _nombreReceta
-
-    private val _categoria = MutableLiveData<String>("")
-    val categoria: LiveData<String> = _categoria
-
-    private val _tiempoPreparacion = MutableLiveData<String>("")
-    val tiempoPreparacion: LiveData<String> = _tiempoPreparacion
-
-    private val _dificultad = MutableLiveData<String>("")
-    val dificultad: LiveData<String> = _dificultad
-
-    private val _ingredientes = MutableLiveData<String>("")
-    val ingredientes: LiveData<String> = _ingredientes
-
-    private val _instrucciones = MutableLiveData<String>("")
-    val instrucciones: LiveData<String> = _instrucciones
-
-    private val _imagenID = MutableLiveData<String>("")
-    val imagenID: LiveData<String> = _imagenID
-
-    private val _recetaFavorite = MutableLiveData<Boolean>(false)
-    val recetaFavorite: LiveData<Boolean> = _recetaFavorite
-
-    private val _recetaList = MutableLiveData<ArrayList<infoReceta>>(arrayListOf())
-    val recetaList: LiveData<ArrayList<infoReceta>> = _recetaList
-
-    private val _selectedReceta = MutableLiveData<infoReceta>()
-    val selectedReceta: LiveData<infoReceta> = _selectedReceta
-
-    private val _isGrid = MutableLiveData<Boolean>(true)
-    val isGrid: LiveData<Boolean> = _isGrid
-
-    fun updateIDreceta(newIDreceta: String) {
-        _IDreceta.value = newIDreceta
+    fun obtenerRecetaPorId(id: String): Receta? {
+        return _listaRecetas.value.find { it.id == id }
     }
-
-    fun updateNombreReceta(newNombreReceta: String) {
-        _nombreReceta.value = newNombreReceta
-    }
-
-    fun updateCategoria(newCategoria: String) {
-        _categoria.value = newCategoria
-    }
-
-    fun updateTiempoPreparacion(newTiempoPreparacion: String) {
-        _tiempoPreparacion.value = newTiempoPreparacion
-    }
-
-    fun updateDificultad(newDificultad: String) {
-        _dificultad.value = newDificultad
-    }
-
-    fun updateIngredientes(newIngredientes: String) {
-        _ingredientes.value = newIngredientes
-    }
-
-    fun updateInstrucciones(newInstrucciones: String) {
-        _instrucciones.value = newInstrucciones
-    }
-
-    fun updateImagenID(newImagenID: String) {
-        _imagenID.value = newImagenID
-    }
-
-    fun updaterecetaFavorite(newrecetaFavorite: Boolean) {
-        _recetaFavorite.value = newrecetaFavorite
-    }
-
-    fun updateRecetaList(newRecetaList: ArrayList<infoReceta>, newReceta: infoReceta) {
-        newRecetaList.add(newReceta)
-        _recetaList.value = newRecetaList
-    }
-
-    fun initializedRecetaList(newRecetaList: ArrayList<infoReceta>) {
-        _recetaList.value = newRecetaList
-    }
-
-    fun updateSelectedReceta(newSelectedReceta: infoReceta) {
-        _selectedReceta.value = newSelectedReceta
-    }
-
-    fun getGrid(): Boolean? {
-        return isGrid.value
-    }
-    fun setGrid(newGrid: Boolean) {
-        _isGrid.value = newGrid
-
-    }
-    private val _userName = MutableLiveData<String>("")
-    val userName: LiveData<String> = _userName
-
-    fun updateUserName(newUserName: String) {
-        _userName.value = newUserName
-
-    }
-    private val _isDarkMode = MutableLiveData(false)
-    val isDarkMode: LiveData<Boolean> = _isDarkMode
-
-    private val _selectedLanguage = MutableLiveData("Español")
-    val selectedLanguage: LiveData<String> = _selectedLanguage
-
-
-
-    fun toggleDarkMode(isDark: Boolean) {
-        _isDarkMode.value = isDark
-    }
-
-    fun changeLanguage(language: String) {
-        _selectedLanguage.value = language
-    }
-
-    fun resetRecetas() {
-        TODO("Not yet implemented")
-    }
-
 }

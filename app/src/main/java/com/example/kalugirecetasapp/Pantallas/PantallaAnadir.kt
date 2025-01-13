@@ -1,164 +1,131 @@
 package com.example.kalugirecetasapp.Pantallas
 
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import com.example.kalugirecetasapp.R
+import androidx.navigation.NavController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
-import com.example.kalugirecetasapp.dataClass.infoReceta
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PantallaAddReceta(recetaList: ArrayList<infoReceta>, modifier: Modifier, inViewModel: BasicViewModel, navController: NavHostController) {
+fun PantallaAñadir(viewModel: BasicViewModel, navController: NavController) {
+    var nombre by remember { mutableStateOf("") }
+    var descripcion by remember { mutableStateOf("") }
+    var ingredientes by remember { mutableStateOf("") }
+    var pasos by remember { mutableStateOf("") }
+    var tiempo by remember { mutableStateOf("") }
+    var porciones by remember { mutableStateOf("") }
+    var dificultad by remember { mutableStateOf("") }
+    var categoria by remember { mutableStateOf("") }
 
-    LaunchedEffect(key1 = true) {
-        inViewModel.updateNombreReceta("")
-        inViewModel.updateIngredientes("")
-        inViewModel.updateInstrucciones("")
-        inViewModel.updateImagenID("")
-        inViewModel.updaterecetaFavorite(false)
-
-    }
-    val imagenID by inViewModel.imagenID.observeAsState("")
-    val nombreReceta: String by inViewModel.nombreReceta.observeAsState("")
-    val ingredientes: String by inViewModel.ingredientes.observeAsState("")
-    val instrucciones: String by inViewModel.instrucciones.observeAsState("")
-    val favorito: Boolean by inViewModel.recetaFavorite.observeAsState(false)
-
-    val uriAddReceta = Uri.parse("android.resource://com.example.contactos/drawable/baseline_cookie_24")
-
-    var imageUri by remember { mutableStateOf<Uri?>(uriAddReceta) }
-
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()) {
-        uri: Uri? ->
-        imageUri = uri
-        inViewModel.updateImagenID(imageUri.toString())
-    }
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Añadir Nueva Receta") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver")
+                    }
+                }
+            )
+        }
+    ) { padding ->
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 70.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-
-            Image(
-                modifier = Modifier
-                    .size(80.dp)
-                    .border(0.5.dp, Color.Blue, CircleShape)
-                    .padding(1.dp)
-                    .clip(RectangleShape)
-                    .clickable { launcher.launch("image/*") },
-                contentScale = ContentScale.Crop,
-                painter = rememberAsyncImagePainter(
-                    ImageRequest.Builder(LocalContext.current)
-                        .data(imageUri)
-                        .build()
-                ),
-                contentDescription = nombreReceta
-            )
-            Spacer(modifier = Modifier.size(10.dp))
-            OutlinedTextField(value = nombreReceta,
-                onValueChange = { inViewModel.updateNombreReceta(it) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                label = { Text(text = "nombre Receta") }
+            OutlinedTextField(
+                value = nombre,
+                onValueChange = { nombre = it },
+                label = { Text("Nombre de la receta") },
+                modifier = Modifier.fillMaxWidth()
             )
 
-            OutlinedTextField(value = ingredientes,
-                onValueChange = { inViewModel.updateIngredientes(it) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                label = { Text(text = "Ingredientes") }
+            OutlinedTextField(
+                value = descripcion,
+                onValueChange = { descripcion = it },
+                label = { Text("Descripción") },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = 3
             )
 
-            OutlinedTextField(value = instrucciones,
-                onValueChange = { inViewModel.updateInstrucciones(it) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                label = { Text(text = "Instrucciones") }
+            OutlinedTextField(
+                value = ingredientes,
+                onValueChange = { ingredientes = it },
+                label = { Text("Ingredientes (uno por línea)") },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = 4
             )
 
-            IconToggleButton(checked = favorito == true,
-                onCheckedChange = { inViewModel.updaterecetaFavorite(it) }) {
-                Icon(
-                    painter = painterResource(
-                        id =
-                        if (favorito == true) R.drawable.baseline_favorite_24
-                        else R.drawable.baseline_favorite_border_24
-                    ),
-                    contentDescription =
-                    if (favorito == true) "Favorito seleccionado"
-                    else "Favorito no seleccionado",
-                    tint = Color.Blue
+            OutlinedTextField(
+                value = pasos,
+                onValueChange = { pasos = it },
+                label = { Text("Pasos de preparación (uno por línea)") },
+                modifier = Modifier.fillMaxWidth(),
+                minLines = 4
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                OutlinedTextField(
+                    value = tiempo,
+                    onValueChange = { tiempo = it },
+                    label = { Text("Tiempo (min)") },
+                    modifier = Modifier.weight(1f)
+                )
+
+                OutlinedTextField(
+                    value = porciones,
+                    onValueChange = { porciones = it },
+                    label = { Text("Porciones") },
+                    modifier = Modifier.weight(1f)
                 )
             }
-            val newList by inViewModel.recetaList.observeAsState(recetaList)
+
+            OutlinedTextField(
+                value = dificultad,
+                onValueChange = { dificultad = it },
+                label = { Text("Dificultad") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            ExposedDropdownMenuBox(
+                expanded = false,
+                onExpandedChange = { },
+            ) {
+                OutlinedTextField(
+                    value = categoria,
+                    onValueChange = { },
+                    readOnly = true,
+                    label = { Text("Categoría") },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
             Button(
                 onClick = {
-                    val nuevaReceta = infoReceta(imagenID,nombreReceta, ingredientes, instrucciones,recetaFavorite = true)
-                    inViewModel.updateRecetaList(ArrayList(newList), nuevaReceta)
-
-                    navController.navigate("receta")
+                    // TODO: Implementar lógica para guardar la receta
+                    navController.navigateUp()
                 },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
-                enabled = nombreReceta.isNotBlank() && ingredientes.isNotBlank()
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Text(
-                    text = "Añadir nueva Receta",
-                    color = Color.White
-                )
+                Icon(Icons.Default.Add, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Guardar Receta")
             }
         }
     }
 }
-
-

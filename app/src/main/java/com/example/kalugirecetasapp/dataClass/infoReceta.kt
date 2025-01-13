@@ -1,11 +1,15 @@
 package com.example.kalugirecetasapp.dataClass
 
-class infoReceta(
-    var imagenID: String,
-    var nombreReceta: String,
-    var ingredientes: String,
-    var instrucciones: String,
-    var recetaFavorite: Boolean=false,
-
-    )
+data class infoReceta(
+    val id: String,
+    val nombre: String,
+    val imagen: Int,
+    val tiempoPreparacion: String,
+    val dificultad: String,
+    val porciones: Int,
+    val ingredientes: List<String>,
+    val pasos: List<String>,
+    val esFavorito: Boolean = false,
+    val esDestacada: Boolean = false
+)
 
