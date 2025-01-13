@@ -57,7 +57,7 @@ fun PantallaDetalleReceta(
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = recetaActual.nombre,
-                    style = MaterialTheme.typography.headlineMedium,
+                    style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
@@ -70,7 +70,7 @@ fun PantallaDetalleReceta(
                 // Ingredientes
                 Text(
                     text = "Ingredientes",
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
                 recetaActual.ingredientes.forEach { ingrediente ->
@@ -84,7 +84,7 @@ fun PantallaDetalleReceta(
                 // Pasos
                 Text(
                     text = "Preparación",
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
                 recetaActual.pasos.forEachIndexed { index, paso ->

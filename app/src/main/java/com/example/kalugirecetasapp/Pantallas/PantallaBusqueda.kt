@@ -45,7 +45,7 @@ fun PantallaBusqueda(viewModel: BasicViewModel, navController: NavController) {
             }) { receta ->
                 RecetaCard(
                     receta = receta,
-                    onClick = { /* TODO: Implementar acción al hacer clic */ }
+                    onClick = { navController.navigate("receta/${receta.id}") }
                 )
             }
         }

@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.kalugirecetasapp.Pantallas.PantallaAñadir
 import com.example.kalugirecetasapp.navegacion.Pantallas
 
 @Composable
@@ -28,7 +29,7 @@ fun AppBottomBar(navController: NavController) {
                 selected = currentRoute == route,
                 onClick = {
                     if (currentRoute != route) {
-                        navController.navigate(route) {
+                        navController.navigate("añadir") {
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
                         }

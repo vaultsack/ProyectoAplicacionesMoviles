@@ -25,10 +25,15 @@ import com.example.kalugirecetasapp.bars.*
 import com.example.kalugirecetasapp.Pantallas.*
 import androidx.compose.material3.DrawerValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import com.example.kalugirecetasapp.ui.theme.Purple80
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.kalugirecetasapp.dataClass.drawerMenuItem
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,12 +54,70 @@ fun MainContent(viewModel: BasicViewModel) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
+    val menuItems = arrayListOf(
+        drawerMenuItem(
+            icon = R.drawable.baseline_home_24,
+            title = "Inicio",
+            route = "inicio"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_search_24,
+            title = "Busqueda",
+            route = "busqueda"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_favorite_24,
+            title = "Favoritos",
+            route = "favoritos"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_library_books_24,
+            title = "Tus recetas",
+            route = "inicio"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_add_24,
+            title = "Añadir",
+            route = "anadir"
+        ),
+        drawerMenuItem(
+            icon = R.drawable.baseline_settings_24,
+            title = "Configuración",
+            route = "configuracion"
+        )
+    )
+
+    var selectedItemIndex by rememberSaveable {
+        mutableStateOf(0)
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             ModalDrawerSheet {
-                DrawerHeader()
-                // ... resto del contenido del drawer
+                DrawerHeader(navController)
+                Spacer(modifier = Modifier.padding(12.dp))
+                menuItems.forEachIndexed { index, menuItems ->
+                    NavigationDrawerItem(
+                        label = { Text(text = menuItems.title) },
+                        onClick = {
+                            selectedItemIndex = index
+                            navController.navigate(menuItems.route)
+                            scope.launch {
+                                drawerState.apply {
+                                    if (isClosed) open() else close()
+                                }
+                            }
+                        },
+                        selected = selectedItemIndex == index,
+                        icon = {
+                            Icon(
+                                imageVector = ImageVector.vectorResource(menuItems.icon),
+                                contentDescription = menuItems.title
+                            )
+                        }
+                    )
+                }
             }
         }
     ) {
@@ -86,6 +149,12 @@ fun MainContent(viewModel: BasicViewModel) {
                 }
                 composable(Pantallas.PantallaPerfil.route) {
                     PantallaPerfil(viewModel, navController)
+                }
+                composable(Pantallas.PantallaAnadir.route){
+                    PantallaAñadir(viewModel, navController)
+                }
+                composable(Pantallas.PantallaConfiguracion.route){
+                    PantallaConfiguracion(viewModel, navController)
                 }
                 composable(
                     route = Pantallas.PantallaReceta.route

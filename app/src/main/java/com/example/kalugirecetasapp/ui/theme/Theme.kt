@@ -48,7 +48,7 @@ fun KalugiRecetasAppTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = AbrilFatface,
         content = content
     )
 }
