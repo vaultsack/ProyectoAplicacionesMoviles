@@ -37,10 +37,15 @@ import com.example.kalugirecetasapp.dataClass.drawerMenuItem
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
+    private val basicViewModel: BasicViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            KalugiRecetasAppTheme {
+
+            val isDarkTheme by basicViewModel.isDarkTheme.collectAsState()
+            KalugiRecetasAppTheme (darkTheme = isDarkTheme) {
                 val viewModel: BasicViewModel by viewModels()
                 MainContent(viewModel)
             }

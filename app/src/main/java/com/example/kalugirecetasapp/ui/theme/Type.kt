@@ -21,7 +21,7 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 22.sp,
         lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
@@ -37,13 +37,14 @@ val AbrilFatface = Typography(
         fontFamily = FontFamily(Font(R.font.abrilfatface)),
         fontWeight = FontWeight.Normal,
         fontSize = 40.sp,
-        lineHeight = 24.sp,
+        lineHeight = 42.sp,
         letterSpacing = 0.5.sp
     ),
     titleMedium = TextStyle(
         fontFamily = FontFamily(Font(R.font.abrilfatface)),
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
+        lineHeight = 30.sp,
         letterSpacing = 0.sp
     )
 )

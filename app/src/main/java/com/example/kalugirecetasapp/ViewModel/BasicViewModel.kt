@@ -2,9 +2,13 @@ package com.example.kalugirecetasapp.ViewModel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.kalugirecetasapp.R
 import com.example.kalugirecetasapp.model.Categoria
 import com.example.kalugirecetasapp.model.Receta
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class BasicViewModel : ViewModel() {
     val categorias = listOf(
@@ -501,5 +505,14 @@ class BasicViewModel : ViewModel() {
 
     fun obtenerRecetaPorId(id: String): Receta? {
         return _listaRecetas.value.find { it.id == id }
+    }
+
+    private val _isDarkTheme = MutableStateFlow(false)
+    val isDarkTheme: StateFlow<Boolean> = _isDarkTheme
+
+    fun toggleTheme(isDark: Boolean){
+        viewModelScope.launch {
+            _isDarkTheme.emit(isDark)
+        }
     }
 }

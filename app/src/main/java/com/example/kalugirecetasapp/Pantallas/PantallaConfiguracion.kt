@@ -13,7 +13,7 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaConfiguracion(viewModel: BasicViewModel, navController: NavController) {
-    var darkMode by remember { mutableStateOf(false) }
+    val isDarkTheme by viewModel.isDarkTheme.collectAsState()
     var notificaciones by remember { mutableStateOf(true) }
     var idiomaSeleccionado by remember { mutableStateOf("Español") }
 
@@ -48,8 +48,8 @@ fun PantallaConfiguracion(viewModel: BasicViewModel, navController: NavControlle
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Switch(
-                        checked = darkMode,
-                        onCheckedChange = { darkMode = it }
+                        checked = isDarkTheme,
+                        onCheckedChange = { viewModel.toggleTheme(it)}
                     )
                     Text("Modo oscuro")
                 }
