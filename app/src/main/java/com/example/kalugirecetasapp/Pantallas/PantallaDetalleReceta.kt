@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaDetalleReceta(
@@ -26,7 +27,26 @@ fun PantallaDetalleReceta(
     val recetas = viewModel.listaRecetas.value ?: emptyList()
     val receta = recetas.find { it.id == recetaId }
 
-    receta?.let { recetaActual ->
+    if (receta == null) {
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Receta no encontrada",
+                style = MaterialTheme.typography.titleLarge
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(onClick = { navController.navigateUp() }) {
+                Text("Volver")
+            }
+        }
+    } else {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -34,8 +54,8 @@ fun PantallaDetalleReceta(
         ) {
             Box {
                 Image(
-                    painter = painterResource(id = recetaActual.imagen),
-                    contentDescription = recetaActual.nombre,
+                    painter = painterResource(id = receta.imagen),
+                    contentDescription = receta.nombre,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp),
@@ -56,13 +76,13 @@ fun PantallaDetalleReceta(
 
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = recetaActual.nombre,
+                    text = receta.nombre,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
                 Text(
-                    text = recetaActual.descripcion,
+                    text = receta.descripcion,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
@@ -73,7 +93,7 @@ fun PantallaDetalleReceta(
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
-                recetaActual.ingredientes.forEach { ingrediente ->
+                receta.ingredientes.forEach { ingrediente ->
                     Text(
                         text = "• $ingrediente",
                         style = MaterialTheme.typography.bodyMedium,
@@ -87,13 +107,20 @@ fun PantallaDetalleReceta(
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
-                recetaActual.pasos.forEachIndexed { index, paso ->
+                receta.pasos.forEachIndexed { index, paso ->
                     Text(
                         text = "${index + 1}. $paso",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(vertical = 4.dp)
                     )
                 }
+                Text(
+                    text = "Categoría: ${receta.categoria}",
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier.padding(bottom = 16.dp),
+                    color = MaterialTheme.colorScheme.primary
+                )
+
             }
         }
     }

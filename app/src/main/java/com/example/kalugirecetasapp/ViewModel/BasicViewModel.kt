@@ -515,4 +515,15 @@ class BasicViewModel : ViewModel() {
             _isDarkTheme.emit(isDark)
         }
     }
+
+
+
+    fun addReceta(nuevaReceta: Receta) {
+        _listaRecetas.value = _listaRecetas.value + nuevaReceta
+    }
+
+    fun resetRecetas() {
+        _listaRecetas.value = listOf()
+    }
 }
+
