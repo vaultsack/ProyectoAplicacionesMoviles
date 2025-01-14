@@ -26,9 +26,9 @@ fun PantallaDetalleReceta(
 ) {
     val recetas = viewModel.listaRecetas.value ?: emptyList()
     val receta = recetas.find { it.id == recetaId }
+    var isFavorite by remember { mutableStateOf(receta?.esFavorito ?: false) }
 
     if (receta == null) {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -46,7 +46,6 @@ fun PantallaDetalleReceta(
             }
         }
     } else {
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -81,11 +80,27 @@ fun PantallaDetalleReceta(
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
-                Text(
-                    text = receta.descripcion,
-                    style = MaterialTheme.typography.bodyLarge,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(bottom = 16.dp)
-                )
+                ) {
+                    Text(
+                        text = receta.descripcion,
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    IconButton(onClick = {
+                        isFavorite = !isFavorite
+                        viewModel.toggleFavorite(receta.id) // Aktualizacja stanu ulubionego w ViewModel
+                    }) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "Marcar como favorito",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
 
                 // Ingredientes
                 Text(
@@ -114,14 +129,14 @@ fun PantallaDetalleReceta(
                         modifier = Modifier.padding(vertical = 4.dp)
                     )
                 }
+
                 Text(
                     text = "Categoría: ${receta.categoria}",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(bottom = 16.dp),
                     color = MaterialTheme.colorScheme.primary
                 )
-
             }
         }
     }
-} 
+}

@@ -525,5 +525,11 @@ class BasicViewModel : ViewModel() {
     fun resetRecetas() {
         _listaRecetas.value = listOf()
     }
+    fun toggleFavorite(recetaId: String) {
+        _listaRecetas.value = _listaRecetas.value.map { receta ->
+            if (receta.id == recetaId) receta.copy(esFavorito = !receta.esFavorito) else receta
+        }
+    }
 }
+
 

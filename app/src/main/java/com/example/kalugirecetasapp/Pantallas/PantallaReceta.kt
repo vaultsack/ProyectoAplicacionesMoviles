@@ -75,6 +75,8 @@ fun PantallaReceta(viewModel: BasicViewModel, navController: NavController, rece
                         InfoItem("Tiempo", "${recetaActual.tiempoPreparacion} min")
                         InfoItem("Porciones", "${recetaActual.porciones}")
                         InfoItem("Dificultad", recetaActual.dificultad)
+
+
                     }
 
                     Divider(modifier = Modifier.padding(vertical = 16.dp))
