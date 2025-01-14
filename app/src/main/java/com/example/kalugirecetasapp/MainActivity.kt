@@ -1,5 +1,6 @@
 package com.example.kalugirecetasapp
 
+import AppBottomBar
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -168,4 +169,5 @@ fun MainContent(viewModel: BasicViewModel) {
         }
     }
 }
+
 

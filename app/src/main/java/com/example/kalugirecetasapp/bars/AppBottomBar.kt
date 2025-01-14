@@ -1,12 +1,16 @@
-package com.example.kalugirecetasapp.bars
-
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.kalugirecetasapp.Pantallas.PantallaAñadir
 import com.example.kalugirecetasapp.navegacion.Pantallas
 
 @Composable
@@ -29,9 +33,12 @@ fun AppBottomBar(navController: NavController) {
                 selected = currentRoute == route,
                 onClick = {
                     if (currentRoute != route) {
-                        navController.navigate("añadir") {
-                            popUpTo(navController.graph.startDestinationId)
+                        navController.navigate(route) {
+                            popUpTo(navController.graph.startDestinationId) {
+                                saveState = true
+                            }
                             launchSingleTop = true
+                            restoreState = true
                         }
                     }
                 }
@@ -39,3 +46,4 @@ fun AppBottomBar(navController: NavController) {
         }
     }
 }
+
