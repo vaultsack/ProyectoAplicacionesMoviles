@@ -70,11 +70,6 @@ val items = listOf(
         route = "pantallaFavoritos"
     ),
     drawerMenuItem(
-        icon = R.drawable.baseline_library_books_24,
-        title = "Tus recetas",
-        route = "recetaGrid"
-    ),
-    drawerMenuItem(
         icon = R.drawable.baseline_add_24,
         title = "Añadir",
         route = "pantalla_añadir"

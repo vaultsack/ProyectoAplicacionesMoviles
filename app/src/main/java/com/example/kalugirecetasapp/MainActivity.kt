@@ -77,11 +77,6 @@ fun MainContent(viewModel: BasicViewModel) {
             route = "favoritos"
         ),
         drawerMenuItem(
-            icon = R.drawable.baseline_library_books_24,
-            title = "Tus recetas",
-            route = "inicio"
-        ),
-        drawerMenuItem(
             icon = R.drawable.baseline_add_24,
             title = "Añadir",
             route = "anadir"
