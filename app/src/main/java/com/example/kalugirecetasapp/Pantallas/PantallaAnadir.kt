@@ -1,16 +1,25 @@
 package com.example.kalugirecetasapp.Pantallas
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import com.example.kalugirecetasapp.R
 import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 import com.example.kalugirecetasapp.model.Receta
@@ -29,6 +38,11 @@ fun PantallaAñadir(viewModel: BasicViewModel, navController: NavController) {
     val categorias = listOf("Desayunos", "Comidas", "Cenas", "Postres", "Bebidas", "Snacks")
 
     var expanded by remember { mutableStateOf(false) }
+    var imageUri by remember { mutableStateOf<Uri?>(null) }
+    var isFavorite by remember { mutableStateOf(false) }
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        imageUri = uri
+    }
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { expanded = !expanded }
@@ -53,6 +67,40 @@ fun PantallaAñadir(viewModel: BasicViewModel, navController: NavController) {
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    if (imageUri != null) {
+                        Image(
+                            painter = rememberAsyncImagePainter(imageUri),
+                            contentDescription = "foto",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+
+                    } else {
+                        TextButton(onClick = { launcher.launch("image/*") }) {
+                            Text("añadir foto")
+                        }
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Marcar como favorito", style = MaterialTheme.typography.bodyLarge)
+                    IconButton(onClick = { isFavorite = !isFavorite }) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "Marcar como favorito"
+                        )
+                    }
+                }
+
                 OutlinedTextField(
                     value = nombre,
                     onValueChange = { nombre = it },
@@ -130,8 +178,8 @@ fun PantallaAñadir(viewModel: BasicViewModel, navController: NavController) {
                         DropdownMenuItem(
                             text = { Text(opcion) },
                             onClick = {
-                                categoria = opcion // Aktualizacja wybranej kategorii
-                                expanded = false  // Zamknięcie menu
+                                categoria = opcion
+                                expanded = false
                             }
                         )
                     }
@@ -151,7 +199,7 @@ fun PantallaAñadir(viewModel: BasicViewModel, navController: NavController) {
                             porciones = porciones.toIntOrNull() ?: 0,
                             dificultad = dificultad,
                             categoria = categoria,
-                            esFavorito = false
+                            esFavorito = isFavorite
                         )
                         viewModel.addReceta(nuevaReceta)
                         navController.navigateUp()
