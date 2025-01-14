@@ -23,6 +23,14 @@ import androidx.annotation.DrawableRes
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PantallaInicio(viewModel: BasicViewModel, navController: NavController) {
+    var selectedCategory by remember { mutableStateOf<String?>(null) }
+
+    val filteredRecetas = if (selectedCategory == null) {
+        viewModel.listaRecetas.value
+    } else {
+        viewModel.listaRecetas.value.filter { it.categoria == selectedCategory }
+    }
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -49,7 +57,7 @@ fun PantallaInicio(viewModel: BasicViewModel, navController: NavController) {
                     CategoryChip(
                         icon = categoria.icon,
                         label = categoria.nombre,
-                        onClick = { /* TODO: Filtrar por categoría */ }
+                        onClick = { selectedCategory = if (selectedCategory == categoria.nombre) null else categoria.nombre }
                     )
                 }
             }
@@ -60,7 +68,7 @@ fun PantallaInicio(viewModel: BasicViewModel, navController: NavController) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                items(viewModel.listaRecetas.value ?: emptyList()) { receta ->
+                items(filteredRecetas) { receta ->
                     RecetaCard(
                         receta = receta,
                         onClick = { navController.navigate("receta/${receta.id}") }
@@ -70,6 +78,7 @@ fun PantallaInicio(viewModel: BasicViewModel, navController: NavController) {
         }
     }
 }
+
 
 @Composable
 fun CategoryChip(

@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 
 class BasicViewModel : ViewModel() {
     val categorias = listOf(
-        Categoria("1", "Desayunos", R.drawable.baseline_cookie_24),
-        Categoria("2", "Comidas", R.drawable.baseline_library_books_24),
-        Categoria("3", "Cenas", R.drawable.baseline_home_24),
-        Categoria("4", "Postres", R.drawable.baseline_favorite_24),
-        Categoria("5", "Bebidas", R.drawable.baseline_settings_24),
-        Categoria("6", "Snacks", R.drawable.baseline_search_24)
+        Categoria("1", "Desayunos", R.drawable.baseline_bakery_dining_24),
+        Categoria("2", "Comidas", R.drawable.baseline_restaurant_24),
+        Categoria("3", "Cenas", R.drawable.baseline_fastfood_24),
+        Categoria("4", "Postres", R.drawable.baseline_icecream_24),
+        Categoria("5", "Bebidas", R.drawable.baseline_local_drink_24),
+        Categoria("6", "Snacks", R.drawable.baseline_cookie_24)
     )
 
     private val _listaRecetas = mutableStateOf<List<Receta>>(
@@ -43,7 +43,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 30,
                 porciones = 4,
                 dificultad = "Media",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = true
             ),
             Receta(
@@ -92,7 +92,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 45,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -141,7 +141,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 50,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = true
             ),
             Receta(
@@ -167,7 +167,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 25,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -214,7 +214,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 15,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Snacks",
                 esFavorito = false
             ),
             Receta(
@@ -238,7 +238,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 30,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Snacks",
                 esFavorito = false
             ),
             Receta(
@@ -260,7 +260,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 50,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Postres",
                 esFavorito = false
             ),
             Receta(
@@ -284,7 +284,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 45,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -304,7 +304,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 30,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Snacks",
                 esFavorito = false
             ),
             Receta(
@@ -327,7 +327,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 40,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Snacks",
                 esFavorito = false
             ),
             Receta(
@@ -351,7 +351,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 120,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -375,7 +375,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 30,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -398,7 +398,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 60,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -422,7 +422,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 30,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Postres",
                 esFavorito = true
             ),
             Receta(
@@ -446,7 +446,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 40,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -469,7 +469,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 50,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Cenas",
                 esFavorito = false
             ),
             Receta(
@@ -494,7 +494,7 @@ class BasicViewModel : ViewModel() {
                 tiempoPreparacion = 20,
                 porciones = 6,
                 dificultad = "Alta",
-                categoria = "Comidas",
+                categoria = "Snacks",
                 esFavorito = false
             )
 
