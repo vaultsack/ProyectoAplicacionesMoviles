@@ -92,7 +92,7 @@ fun PantallaDetalleReceta(
 
                     IconButton(onClick = {
                         isFavorite = !isFavorite
-                        viewModel.toggleFavorite(receta.id) // Aktualizacja stanu ulubionego w ViewModel
+                        viewModel.toggleFavorite(receta.id)
                     }) {
                         Icon(
                             imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,

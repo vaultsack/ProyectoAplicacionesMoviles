@@ -1,5 +1,6 @@
 package com.example.kalugirecetasapp.Pantallas
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -14,8 +15,12 @@ import com.example.kalugirecetasapp.ViewModel.BasicViewModel
 @Composable
 fun PantallaConfiguracion(viewModel: BasicViewModel, navController: NavController) {
     val isDarkTheme by viewModel.isDarkTheme.collectAsState()
+    val sharedPreferences = navController.context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
     var notificaciones by remember { mutableStateOf(true) }
-    var idiomaSeleccionado by remember { mutableStateOf("Español") }
+    var idiomaSeleccionado by remember {
+        mutableStateOf(sharedPreferences.getString("selected_language", "Español") ?: "Español")
+    }
+    var expanded by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -49,7 +54,7 @@ fun PantallaConfiguracion(viewModel: BasicViewModel, navController: NavControlle
                     Spacer(modifier = Modifier.height(16.dp))
                     Switch(
                         checked = isDarkTheme,
-                        onCheckedChange = { viewModel.toggleTheme(it)}
+                        onCheckedChange = { viewModel.toggleTheme(it) }
                     )
                     Text("Modo oscuro")
                 }
@@ -85,16 +90,41 @@ fun PantallaConfiguracion(viewModel: BasicViewModel, navController: NavControlle
                         style = MaterialTheme.typography.titleMedium
                     )
                     Spacer(modifier = Modifier.height(16.dp))
+
+                    // Dropdown menu box
                     ExposedDropdownMenuBox(
-                        expanded = false,
-                        onExpandedChange = { }
+                        expanded = expanded,
+                        onExpandedChange = { expanded = !expanded }
                     ) {
                         OutlinedTextField(
                             value = idiomaSeleccionado,
                             onValueChange = { },
                             readOnly = true,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .menuAnchor(),
+                            label = { Text("Selecciona el idioma") },
+                            trailingIcon = {
+                                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                            },
+                            colors = ExposedDropdownMenuDefaults.textFieldColors()
                         )
+
+                        ExposedDropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
+                        ) {
+                            listOf("Español", "Inglés").forEach { idioma ->
+                                DropdownMenuItem(
+                                    text = { Text(idioma) },
+                                    onClick = {
+                                        idiomaSeleccionado = idioma
+                                        sharedPreferences.edit().putString("selected_language", idioma).apply()
+                                        expanded = false
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
             }

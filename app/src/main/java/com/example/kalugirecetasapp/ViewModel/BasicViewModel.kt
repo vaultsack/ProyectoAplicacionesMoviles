@@ -498,7 +498,7 @@ class BasicViewModel : ViewModel() {
                 esFavorito = false
             )
 
-            // Puedes agregar más recetas siguiendo el mismo patrón
+
         )
     )
     val listaRecetas = _listaRecetas
